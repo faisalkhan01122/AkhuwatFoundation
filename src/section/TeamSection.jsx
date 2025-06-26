@@ -1,223 +1,314 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { FaLinkedin, FaTwitter, FaEnvelope } from "react-icons/fa"
+import { useState } from "react"
+import {
+  FaLinkedin,
+  FaTwitter,
+  FaEnvelope,
+  FaPhone,
+  FaMapMarkerAlt,
+  FaAward,
+  FaUsers,
+  FaHeart,
+  FaGlobe,
+} from "react-icons/fa"
 
 const teamMembers = [
   {
     id: 1,
     name: "Dr. Amjad Saqib",
-    role: "The Founder",
+    role: "Founder & Executive Director",
     image: "/images.jpg",
-    bio: "Visionary leader who founded Akhuwat with the mission to eliminate poverty through interest-free microfinance.",
+    bio: "Visionary leader who founded Akhuwat with the mission to eliminate poverty through interest-free microfinance. A pioneer in Islamic banking and social entrepreneurship.",
+    achievements: ["Founded Akhuwat in 2001", "Served 4.5M+ families", "Zero-interest pioneer"],
+    location: "Lahore, Pakistan",
+    experience: "25+ Years",
     social: {
       linkedin: "#",
       twitter: "#",
       email: "amjad@akhuwat.org",
+      phone: "+92-42-111-253-928",
     },
+    color: "from-emerald-600 to-teal-700",
   },
   {
     id: 2,
     name: "Mr. Azhar Hameed",
     role: "Global President",
     image: "/Blog2.jpg",
-    bio: "Leading global operations and strategic partnerships to expand Akhuwat's reach worldwide.",
+    bio: "Leading global operations and strategic partnerships to expand Akhuwat's reach worldwide. Expert in international development and microfinance.",
+    achievements: ["Global expansion leader", "Strategic partnerships", "International development"],
+    location: "Islamabad, Pakistan",
+    experience: "20+ Years",
     social: {
       linkedin: "#",
       twitter: "#",
       email: "azhar@akhuwat.org",
+      phone: "+92-51-111-253-928",
     },
+    color: "from-blue-600 to-indigo-700",
   },
   {
     id: 3,
     name: "Dr. Nauman Mufti",
-    role: "President",
+    role: "President Operations",
     image: "/numan.jpg",
-    bio: "Overseeing organizational development and ensuring sustainable growth of our programs.",
+    bio: "Overseeing organizational development and ensuring sustainable growth of our programs. Specialist in operational excellence and program management.",
+    achievements: ["Operational excellence", "Program management", "Sustainable growth"],
+    location: "Karachi, Pakistan",
+    experience: "18+ Years",
     social: {
       linkedin: "#",
       twitter: "#",
       email: "nauman@akhuwat.org",
+      phone: "+92-21-111-253-928",
     },
+    color: "from-purple-600 to-pink-700",
   },
   {
     id: 4,
     name: "Mr. Asim Ashary",
-    role: "Director",
+    role: "Director Programs",
     image: "/yuman-p-300x300.jpg",
-    bio: "Managing operational excellence and program implementation across all regions.",
+    bio: "Managing operational excellence and program implementation across all regions. Expert in field operations and community engagement.",
+    achievements: ["Program implementation", "Community engagement", "Field operations"],
+    location: "Faisalabad, Pakistan",
+    experience: "15+ Years",
     social: {
       linkedin: "#",
       twitter: "#",
       email: "asim@akhuwat.org",
+      phone: "+92-41-111-253-928",
     },
+    color: "from-orange-600 to-red-700",
   },
-  // {
-  //   id: 5,
-  //   name: "Mr. Yuman Pirzada",
-  //   role: "Director",
-  //   image: "/dfsdf-1.jpg",
-  //   bio: "Leading financial operations and ensuring transparency in all our lending processes.",
-  //   social: {
-  //     linkedin: "#",
-  //     twitter: "#",
-  //     email: "yuman@akhuwat.org",
-  //   },
-  // },
-  // {
-  //   id: 6,
-  //   name: "Mr. Shahid Jamil",
-  //   role: "Ambassador, Maryland",
-  //   image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=face",
-  //   bio: "Representing Akhuwat in Maryland and building community partnerships in the region.",
-  //   social: {
-  //     linkedin: "#",
-  //     twitter: "#",
-  //     email: "shahid@akhuwat.org",
-  //   },
-  // },
-  // {
-  //   id: 7,
-  //   name: "Mr. Mian Mushtaq Javed",
-  //   role: "Ambassador, New York & Florida",
-  //   image: "https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=200&h=200&fit=crop&crop=face",
-  //   bio: "Expanding Akhuwat's presence in New York and Florida through strategic initiatives.",
-  //   social: {
-  //     linkedin: "#",
-  //     twitter: "#",
-  //     email: "mushtaq@akhuwat.org",
-  //   },
-  // },
+  {
+    id: 5,
+    name: "Ms. Fatima Sheikh",
+    role: "Director Women Empowerment",
+    image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=300&h=300&fit=crop&crop=face",
+    bio: "Leading women empowerment initiatives and microfinance programs specifically designed for female entrepreneurs across Pakistan.",
+    achievements: ["Women empowerment", "Female entrepreneurship", "Microfinance specialist"],
+    location: "Multan, Pakistan",
+    experience: "12+ Years",
+    social: {
+      linkedin: "#",
+      twitter: "#",
+      email: "fatima@akhuwat.org",
+      phone: "+92-61-111-253-928",
+    },
+    color: "from-pink-600 to-rose-700",
+  },
+  {
+    id: 6,
+    name: "Mr. Hassan Ali",
+    role: "Director Technology",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face",
+    bio: "Driving digital transformation and technology innovation to enhance service delivery and operational efficiency across all Akhuwat programs.",
+    achievements: ["Digital transformation", "Technology innovation", "System optimization"],
+    location: "Lahore, Pakistan",
+    experience: "10+ Years",
+    social: {
+      linkedin: "#",
+      twitter: "#",
+      email: "hassan@akhuwat.org",
+      phone: "+92-42-111-253-929",
+    },
+    color: "from-teal-600 to-cyan-700",
+  },
 ]
 
 const TeamSection = () => {
+  const [hoveredMember, setHoveredMember] = useState(null)
+
   return (
-    <section className="py-20 bg-gradient-to-br from-white via-gray-50 to-green-50 relative overflow-hidden">
-      {/* Background Elements */}
+    <section className="py-24 bg-gradient-to-br from-white via-gray-50 to-emerald-50 relative overflow-hidden">
+      {/* Enhanced Background Elements */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-10 right-10 w-32 h-32 bg-blue-400 rounded-full animate-float"></div>
-        <div className="absolute bottom-20 left-20 w-24 h-24 bg-green-400 rounded-full animate-float-reverse"></div>
-        <div className="absolute top-1/3 right-1/4 w-16 h-16 bg-purple-400 rounded-full animate-pulse"></div>
+        <div className="absolute top-10 right-10 w-96 h-96 bg-emerald-400 rounded-full animate-float blur-3xl"></div>
+        <div className="absolute bottom-20 left-20 w-80 h-80 bg-blue-400 rounded-full animate-float-reverse blur-3xl"></div>
+        <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-purple-400 rounded-full animate-pulse blur-2xl"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 relative z-10">
-        {/* Header */}
+        {/* Enhanced Header */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-20"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <motion.span
-            className="text-green-600 font-semibold text-lg mb-2 block"
+          <motion.div
+            className="flex items-center justify-center gap-4 mb-8"
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.6 }}
             viewport={{ once: true }}
           >
-            Akhuwat USA
-          </motion.span>
+            <div className="w-16 h-16 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-full flex items-center justify-center shadow-2xl">
+              <FaUsers className="text-white text-2xl" />
+            </div>
+            <div className="text-left">
+              <span className="text-emerald-600 font-bold text-xl block">Akhuwat USA</span>
+              <span className="text-gray-500 text-sm">Leadership Team</span>
+            </div>
+          </motion.div>
+
           <motion.h2
-            className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
+            className="text-5xl md:text-7xl font-black text-gray-900 mb-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
             viewport={{ once: true }}
           >
-            Our <span className="gradient-text">Team</span>
+            Our{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600">
+              Leadership Team
+            </span>
           </motion.h2>
+
           <motion.p
-            className="text-xl text-gray-600 max-w-3xl mx-auto"
+            className="text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
             viewport={{ once: true }}
           >
-            Meet the dedicated leaders working tirelessly to eliminate poverty and empower communities
+            Meet the visionary leaders working tirelessly to eliminate poverty and empower communities through
+            innovative microfinance solutions
           </motion.p>
         </motion.div>
 
         {/* Team Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 mb-20">
           {teamMembers.map((member, index) => (
             <motion.div
               key={member.id}
-              className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover-lift"
+              className="group bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-emerald-200"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1, duration: 0.6 }}
               viewport={{ once: true }}
-              whileHover={{ y: -10 }}
+              whileHover={{ y: -15 }}
+              onHoverStart={() => setHoveredMember(index)}
+              onHoverEnd={() => setHoveredMember(null)}
             >
               {/* Image Container */}
-              <div className="relative overflow-hidden">
+              <div className="relative overflow-hidden h-80">
                 <motion.img
                   src={member.image}
                   alt={member.name}
-                  className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+                  animate={hoveredMember === index ? { scale: 1.1 } : { scale: 1 }}
                 />
 
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
                 {/* Social Links */}
                 <motion.div
-                  className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                   initial={{ y: 20 }}
                   whileInView={{ y: 0 }}
                   transition={{ delay: 0.3 }}
                 >
                   {[
-                    { icon: <FaLinkedin />, link: member.social.linkedin, color: "bg-blue-600" },
-                    { icon: <FaTwitter />, link: member.social.twitter, color: "bg-sky-500" },
-                    { icon: <FaEnvelope />, link: `mailto:${member.social.email}`, color: "bg-green-600" },
+                    { icon: FaLinkedin, link: member.social.linkedin, color: "bg-blue-600" },
+                    { icon: FaTwitter, link: member.social.twitter, color: "bg-sky-500" },
+                    { icon: FaEnvelope, link: `mailto:${member.social.email}`, color: "bg-emerald-600" },
+                    { icon: FaPhone, link: `tel:${member.social.phone}`, color: "bg-purple-600" },
                   ].map((social, i) => (
                     <motion.a
                       key={i}
                       href={social.link}
-                      className={`w-10 h-10 ${social.color} rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform duration-300`}
+                      className={`w-12 h-12 ${social.color} rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform duration-300 shadow-lg`}
                       whileHover={{ scale: 1.2, rotate: 360 }}
                       whileTap={{ scale: 0.9 }}
                     >
-                      {social.icon}
+                      <social.icon className="w-5 h-5" />
                     </motion.a>
                   ))}
                 </motion.div>
 
                 {/* Role Badge */}
-                <div className="absolute top-4 left-4 bg-green-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                  {member.role}
+                <div
+                  className={`absolute top-4 left-4 px-4 py-2 rounded-full text-white text-sm font-bold bg-gradient-to-r ${member.color}`}
+                >
+                  {member.role.split(" ")[0]}
+                </div>
+
+                {/* Experience Badge */}
+                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-gray-800">
+                  {member.experience}
                 </div>
               </div>
 
               {/* Content */}
-              <div className="p-6">
+              <div className="p-8">
                 <motion.h3
-                  className="text-xl font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors duration-300"
+                  className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-emerald-600 transition-colors duration-300"
                   whileHover={{ x: 5 }}
                 >
                   {member.name}
                 </motion.h3>
 
-                <p className="text-gray-600 mb-4 leading-relaxed text-sm">{member.bio}</p>
+                <p className="text-emerald-600 font-semibold text-lg mb-4">{member.role}</p>
 
-                {/* Contact Button */}
-                <motion.button
-                  className="w-full py-2 bg-gradient-to-r from-green-600 to-emerald-700 text-white rounded-lg font-semibold hover:shadow-lg transition-all duration-300 btn-animate"
+                <p className="text-gray-600 mb-6 leading-relaxed">{member.bio}</p>
+
+                {/* Location & Contact */}
+                <div className="space-y-3 mb-6">
+                  <div className="flex items-center gap-3 text-sm text-gray-500">
+                    <FaMapMarkerAlt className="text-emerald-500" />
+                    <span>{member.location}</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-sm text-gray-500">
+                    <FaEnvelope className="text-blue-500" />
+                    <a href={`mailto:${member.social.email}`} className="hover:text-blue-600 transition-colors">
+                      {member.social.email}
+                    </a>
+                  </div>
+                </div>
+
+                {/* Achievements */}
+                <div className="space-y-2 mb-6">
+                  <h4 className="text-sm font-bold text-gray-800 mb-3 flex items-center gap-2">
+                    <FaAward className="text-yellow-500" />
+                    Key Achievements
+                  </h4>
+                  {member.achievements.map((achievement, i) => (
+                    <div key={i} className="flex items-center gap-2 text-sm text-gray-600">
+                      <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                      <span>{achievement}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Connect Button */}
+                <motion.a
+                  href={`mailto:${member.social.email}`}
+                  className={`w-full py-3 rounded-2xl text-white font-bold bg-gradient-to-r ${member.color} hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-3`}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
+                  <FaEnvelope />
                   Connect
-                </motion.button>
+                </motion.a>
               </div>
+
+              {/* Hover Glow Effect */}
+              <div
+                className={`absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-gradient-to-r ${member.color} blur-xl -z-10`}
+              ></div>
             </motion.div>
           ))}
         </div>
 
-        {/* Join Mission Section */}
+        {/* Enhanced Join Mission Section */}
         <motion.div
-          className="bg-gradient-to-r from-green-600 to-emerald-700 rounded-3xl p-8 md:p-12 text-white relative overflow-hidden"
+          className="bg-gradient-to-r from-emerald-600 to-teal-600 rounded-3xl p-12 md:p-16 text-white relative overflow-hidden"
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -225,55 +316,106 @@ const TeamSection = () => {
         >
           {/* Background Pattern */}
           <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-white rounded-full -translate-y-32 translate-x-32"></div>
-            <div className="absolute bottom-0 left-0 w-48 h-48 bg-white rounded-full translate-y-24 -translate-x-24"></div>
+            <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full -translate-y-48 translate-x-48"></div>
+            <div className="absolute bottom-0 left-0 w-80 h-80 bg-white rounded-full translate-y-40 -translate-x-40"></div>
           </div>
 
-          <div className="relative z-10 text-center">
-            <motion.span
-              className="text-green-200 font-semibold text-lg mb-2 block"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              Join Our Mission
-            </motion.span>
+          <div className="relative z-10">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              {/* Content */}
+              <div>
+                <motion.div
+                  className="flex items-center gap-3 mb-6"
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.3, duration: 0.6 }}
+                  viewport={{ once: true }}
+                >
+                  <FaHeart className="text-3xl text-emerald-200" />
+                  <span className="text-emerald-200 font-bold text-xl">Join Our Mission</span>
+                </motion.div>
 
-            <motion.h3
-              className="text-3xl md:text-4xl font-bold mb-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              Help deserving students in breaking the chains of poverty and securing a bright future
-            </motion.h3>
+                <motion.h3
+                  className="text-4xl md:text-5xl font-black mb-6"
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.4, duration: 0.6 }}
+                  viewport={{ once: true }}
+                >
+                  Help deserving students break the chains of poverty
+                </motion.h3>
 
-            <motion.p
-              className="text-green-100 mb-8 max-w-3xl mx-auto leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              Akhuwat's vision of a poverty-free society hinges on addressing its root cause: illiteracy among the
-              impoverished. Recognizing education's vital role in fostering innovation, empathy, and limitless
-              possibilities, Akhuwat remains committed to providing free high-quality education across primary,
-              secondary, and higher levels.
-            </motion.p>
+                <motion.p
+                  className="text-emerald-100 mb-8 text-xl leading-relaxed"
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.5, duration: 0.6 }}
+                  viewport={{ once: true }}
+                >
+                  Akhuwat's vision of a poverty-free society hinges on addressing its root cause: illiteracy among the
+                  impoverished. Join our team in providing free, high-quality education and creating limitless
+                  possibilities.
+                </motion.p>
 
-            <motion.button
-              className="bg-white text-green-700 px-8 py-4 rounded-full font-bold text-lg hover:bg-green-50 transition-all duration-300 shadow-lg hover:shadow-xl btn-animate"
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.6, duration: 0.6 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Donate Now ❤️
-            </motion.button>
+                <motion.div
+                  className="flex flex-col sm:flex-row gap-4"
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.6, duration: 0.6 }}
+                  viewport={{ once: true }}
+                >
+                  <motion.button
+                    className="bg-white text-emerald-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-emerald-50 transition-all duration-300 shadow-lg flex items-center justify-center gap-3"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <FaHeart />
+                    Donate Now
+                  </motion.button>
+
+                  <motion.button
+                    className="bg-white/10 backdrop-blur-sm border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/20 transition-all duration-300 flex items-center justify-center gap-3"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <FaUsers />
+                    Join Our Team
+                  </motion.button>
+                </motion.div>
+              </div>
+
+              {/* Stats */}
+              <motion.div
+                className="grid grid-cols-2 gap-6"
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.7, duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                {[
+                  { number: "4.5M+", label: "Lives Transformed", icon: FaUsers },
+                  { number: "850+", label: "Service Centers", icon: FaGlobe },
+                  { number: "₨500B+", label: "Disbursed", icon: FaHeart },
+                  { number: "20+", label: "Years Experience", icon: FaAward },
+                ].map((stat, index) => (
+                  <motion.div
+                    key={index}
+                    className="text-center bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.8 + index * 0.1, duration: 0.6 }}
+                    viewport={{ once: true }}
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <stat.icon className="text-white text-xl" />
+                    </div>
+                    <div className="text-3xl font-black text-white mb-2">{stat.number}</div>
+                    <div className="text-emerald-200 font-semibold">{stat.label}</div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
           </div>
         </motion.div>
       </div>

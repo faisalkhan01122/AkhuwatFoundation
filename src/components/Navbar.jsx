@@ -2,311 +2,215 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { Link, useLocation } from "react-router-dom"
 import {
-  FaPhone,
-  FaWhatsapp,
   FaBars,
   FaTimes,
-  FaHome,
-  FaHandHoldingUsd,
-  FaInfoCircle,
-  FaEnvelope,
   FaChevronDown,
+  FaBuilding,
+  FaUsers,
+  FaUser,
+  FaMedkit,
+  FaGraduationCap,
+  FaHome,
+  FaExclamationTriangle,
+  FaPhone,
 } from "react-icons/fa"
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState(null)
+  const location = useLocation()
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50)
-    }
+    const handleScroll = () => setScrolled(window.scrollY > 30)
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  const loanServices = [
+    { name: "Business Loans", path: "/business-loans", icon: FaBuilding, desc: "Up to ₨30 Lacs for business growth" },
+    { name: "Microfinance Loans", path: "/microfinance-loans", icon: FaUsers, desc: "₨50K-₨5L for small entrepreneurs" },
+    { name: "Personal Loans", path: "/personal-loans", icon: FaUser, desc: "Up to ₨15 Lacs for personal needs" },
+    { name: "Healthcare Loans", path: "/healthcare-loans", icon: FaMedkit, desc: "Medical emergency financing" },
+    { name: "Education Loans", path: "/education-loans", icon: FaGraduationCap, desc: "Complete education support" },
+    { name: "Housing Loans", path: "/housing-loans", icon: FaHome, desc: "Up to ₨50 Lacs for dream homes" },
+    { name: "Emergency Loans", path: "/emergency-loans", icon: FaExclamationTriangle, desc: "Instant crisis support" },
+  ]
+
   const navItems = [
-    {
-      name: "Home",
-      link: "/",
-      icon: <FaHome />,
-      description: "Welcome to Akhuwat Network",
-    },
-    {
-      name: "Loan Services",
-      link: "/loan-services",
-      icon: <FaHandHoldingUsd />,
-      description: "Interest-free financial solutions",
-      dropdown: [
-        { name: "Business Loans", link: "/loan-services#business" },
-        { name: "Personal Loans", link: "/loan-services#personal" },
-        { name: "Education Loans", link: "/loan-services#education" },
-        { name: "Housing Loans", link: "/loan-services#housing" },
-      ],
-    },
-    {
-      name: "About Akhuwat",
-      link: "/about-us",
-      icon: <FaInfoCircle />,
-      description: "Our mission and impact",
-    },
-    {
-      name: "Contact",
-      link: "/contact-us",
-      icon: <FaEnvelope />,
-      description: "Get in touch with us",
-    },
+    { name: "Home", path: "/" },
+    { name: "About Us", path: "/about-us" },
+    { name: "Loan Services", path: "/loan-services", dropdown: loanServices },
+    { name: "Impact", path: "/impact" },
+    { name: "Contact", path: "/contact-us" },
+    { name: "Help Center", path: "/help-center" },
   ]
 
   return (
     <>
-      <motion.header
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-          scrolled
-            ? "bg-white/95 backdrop-blur-xl shadow-2xl border-b border-emerald-100"
-            : "bg-white/90 backdrop-blur-sm"
+      <motion.nav
+        className={`fixed top-0 left-0 right-0 z-50 px-4 md:px-8 transition-all duration-500 ${
+          scrolled ? "bg-white/90 shadow-lg backdrop-blur-md border-b border-gray-200" : "bg-transparent"
         }`}
-        initial={{ y: -100 }}
+        initial={{ y: -80 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.8, type: "spring" }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
       >
-        <div className="flex justify-between items-center px-4 py-4 max-w-7xl mx-auto">
-          {/* Enhanced Logo */}
-          <motion.a
-            href="/"
-            className="flex items-center gap-4 group"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <div className="relative">
-              <motion.img
-                src="/akhuwatfundslogo.png"
-                alt="Akhuwat Network"
-                className="h-14 w-14 rounded-full shadow-lg group-hover:shadow-xl transition-all duration-300"
-                whileHover={{ rotate: 360 }}
-                transition={{ duration: 0.8 }}
-              />
-              <div className="absolute -inset-1 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur"></div>
+        <div className="max-w-7xl mx-auto flex items-center justify-between h-20">
+          {/* Logo */}
+          <Link to="/" className="flex items-center gap-3">
+            <img src="/akhuwatfundslogo.png" alt="Logo" className="w-12 h-12 rounded-full" />
+            <div className="hidden md:block">
+              <h1 className={`text-xl font-bold ${scrolled ? "text-gray-800" : "text-white"}`}>Akhuwat Network</h1>
+              <p className={`text-sm ${scrolled ? "text-emerald-600" : "text-emerald-300"}`}>Interest-Free Loans</p>
             </div>
-            <div className="hidden sm:block">
-              <motion.h1
-                className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.3 }}
-              >
-                Akhuwat Network
-              </motion.h1>
-              <motion.p
-                className="text-sm text-gray-600 font-medium"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.5 }}
-              >
-                Pakistan's Largest Interest-Free Microfinance
-              </motion.p>
-            </div>
-          </motion.a>
+          </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-2">
-            {navItems.map((item, index) => (
+          {/* Desktop Menu */}
+          <div className="hidden lg:flex items-center gap-4">
+            {navItems.map((item) => (
               <div
                 key={item.name}
                 className="relative"
-                onMouseEnter={() => setActiveDropdown(item.dropdown ? item.name : null)}
+                onMouseEnter={() => item.dropdown && setActiveDropdown(item.name)}
                 onMouseLeave={() => setActiveDropdown(null)}
               >
-                <motion.a
-                  href={item.link}
-                  className="flex items-center gap-2 px-4 py-3 rounded-xl font-medium transition-all duration-300 text-gray-700 hover:text-emerald-600 hover:bg-emerald-50 group relative overflow-hidden"
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                <Link
+                  to={item.path}
+                  className={`flex items-center gap-1 px-5 py-2 rounded-full font-medium transition-all duration-200 ${
+                    location.pathname === item.path
+                      ? "bg-emerald-600 text-white shadow-md"
+                      : scrolled
+                        ? "text-gray-800 hover:bg-emerald-100 hover:text-emerald-600"
+                        : "text-white hover:bg-white/20"
+                  }`}
                 >
-                  <span className="text-lg">{item.icon}</span>
-                  <span>{item.name}</span>
-                  {item.dropdown && <FaChevronDown className="text-xs" />}
+                  {item.name}
+                  {item.dropdown && <FaChevronDown className="w-3 h-3 mt-0.5" />}
+                </Link>
 
-                  {/* Hover Effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-teal-600 opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-xl"></div>
-                </motion.a>
-
-                {/* Dropdown Menu */}
+                {/* Dropdown */}
                 <AnimatePresence>
                   {item.dropdown && activeDropdown === item.name && (
                     <motion.div
-                      className="absolute top-full left-0 mt-2 w-64 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden"
-                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                      transition={{ duration: 0.2 }}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      transition={{ duration: 0.3 }}
+                      className="absolute top-full left-0 mt-2 w-[320px] bg-white rounded-2xl shadow-2xl p-4 grid grid-cols-1 gap-3 z-50"
                     >
-                      <div className="p-2">
-                        {item.dropdown.map((dropItem, dropIndex) => (
-                          <motion.a
-                            key={dropItem.name}
-                            href={dropItem.link}
-                            className="block px-4 py-3 text-gray-700 hover:text-emerald-600 hover:bg-emerald-50 rounded-xl transition-all duration-200"
-                            initial={{ opacity: 0, x: -10 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: dropIndex * 0.05 }}
-                            whileHover={{ x: 5 }}
-                          >
-                            {dropItem.name}
-                          </motion.a>
-                        ))}
-                      </div>
+                      {item.dropdown.map((loan) => (
+                        <Link
+                          key={loan.name}
+                          to={loan.path}
+                          onClick={() => setActiveDropdown(null)}
+                          className="flex gap-3 items-start hover:bg-emerald-50 p-3 rounded-xl transition"
+                        >
+                          <div className="bg-emerald-600 text-white p-2 rounded-full">
+                            <loan.icon className="w-4 h-4" />
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-gray-800">{loan.name}</h4>
+                            <p className="text-xs text-gray-500">{loan.desc}</p>
+                          </div>
+                        </Link>
+                      ))}
                     </motion.div>
                   )}
                 </AnimatePresence>
               </div>
             ))}
-          </nav>
-
-          {/* Contact Buttons & Mobile Menu */}
-          <div className="flex items-center gap-3">
-            {/* Apply Now Button */}
-            <motion.a
-              href="/loan-services"
-              className="hidden md:flex bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white px-6 py-3 rounded-full font-bold shadow-lg hover:shadow-xl transition-all duration-300 items-center gap-2"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.6 }}
-            >
-              Apply Now
-              <motion.span animate={{ x: [0, 3, 0] }} transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY }}>
-                →
-              </motion.span>
-            </motion.a>
-
-            {/* WhatsApp Button */}
-            <motion.a
-              href="https://wa.me/923281969250"
-              className="hidden md:flex bg-green-500 hover:bg-green-600 text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group"
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              whileTap={{ scale: 0.9 }}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.7 }}
-            >
-              <FaWhatsapp className="w-5 h-5 group-hover:animate-bounce" />
-            </motion.a>
-
-            {/* Call Button */}
-            <motion.a
-              href="tel:+923281969250"
-              className="hidden md:flex bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group"
-              whileHover={{ scale: 1.1, rotate: -5 }}
-              whileTap={{ scale: 0.9 }}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.8 }}
-            >
-              <FaPhone className="w-4 h-4 group-hover:animate-pulse" />
-            </motion.a>
-
-            {/* Mobile Menu Button */}
-            <motion.button
-              onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden p-3 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors duration-200"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <motion.div animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.3 }}>
-                {isOpen ? <FaTimes className="w-5 h-5" /> : <FaBars className="w-5 h-5" />}
-              </motion.div>
-            </motion.button>
           </div>
-        </div>
 
-        {/* Enhanced Mobile Navigation */}
-        <AnimatePresence>
-          {isOpen && (
-            <motion.nav
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-              className="lg:hidden bg-white/95 backdrop-blur-xl border-t border-gray-200 shadow-xl"
+          {/* CTA & Phone */}
+          <div className="hidden lg:flex items-center gap-4">
+            <a href="tel:+923281969250" className="text-sm font-medium text-blue-600 hover:underline flex items-center gap-2">
+              <FaPhone /> +92 328 1969250
+            </a>
+            <Link
+              to="/loan-services"
+              className="bg-gradient-to-r from-emerald-600 to-teal-600 px-5 py-2 rounded-full text-white font-semibold hover:shadow-lg"
             >
-              <div className="px-4 py-6 space-y-4 max-h-96 overflow-y-auto">
-                {navItems.map((item, index) => (
-                  <motion.a
-                    key={item.name}
-                    href={item.link}
-                    className="flex items-center gap-4 px-4 py-4 rounded-2xl font-medium transition-all duration-300 text-gray-700 hover:text-emerald-600 hover:bg-emerald-50 group"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    onClick={() => setIsOpen(false)}
-                    whileHover={{ x: 5, scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <div className="w-10 h-10 bg-gradient-to-r from-emerald-100 to-teal-100 rounded-full flex items-center justify-center text-emerald-600 group-hover:from-emerald-200 group-hover:to-teal-200 transition-all duration-300">
-                      {item.icon}
-                    </div>
-                    <div>
-                      <div className="font-semibold">{item.name}</div>
-                      <div className="text-xs text-gray-500">{item.description}</div>
-                    </div>
-                  </motion.a>
+              Apply Now →
+            </Link>
+          </div>
+
+          {/* Mobile Button */}
+          <button
+            className="lg:hidden text-2xl p-2 rounded-md transition"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? <FaTimes className={scrolled ? "text-gray-800" : "text-white"} /> : <FaBars className={scrolled ? "text-gray-800" : "text-white"} />}
+          </button>
+        </div>
+      </motion.nav>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className="fixed inset-0 bg-black/60 z-40"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsOpen(false)}
+          >
+            <motion.div
+              className="absolute right-0 top-0 h-full w-80 bg-white shadow-xl p-6 overflow-y-auto"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="mt-16 space-y-4">
+                {navItems.map((item) => (
+                  <div key={item.name}>
+                    <Link
+                      to={item.path}
+                      className="block py-3 px-4 rounded-lg font-semibold text-gray-700 hover:bg-emerald-100"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                    {item.dropdown && (
+                      <div className="ml-4 space-y-2 mt-1">
+                        {item.dropdown.map((loan) => (
+                          <Link
+                            key={loan.name}
+                            to={loan.path}
+                            className="flex items-center gap-2 px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded-lg"
+                            onClick={() => setIsOpen(false)}
+                          >
+                            <loan.icon className="w-4 h-4" />
+                            {loan.name}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 ))}
-
-                {/* Mobile Contact Buttons */}
-                <div className="flex gap-3 pt-4 border-t border-gray-200">
-                  <motion.a
-                    href="https://wa.me/923281969250"
-                    className="flex-1 bg-green-500 hover:bg-green-600 text-white py-4 px-4 rounded-2xl font-semibold text-center transition-all duration-300 flex items-center justify-center gap-2"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <FaWhatsapp />
-                    WhatsApp
-                  </motion.a>
-                  <motion.a
+                <div className="mt-6 pt-4 border-t border-gray-200">
+                  <a
                     href="tel:+923281969250"
-                    className="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-4 px-4 rounded-2xl font-semibold text-center transition-all duration-300 flex items-center justify-center gap-2"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                    className="flex items-center gap-2 text-blue-600 font-medium"
                   >
-                    <FaPhone />
-                    Call Now
-                  </motion.a>
+                    <FaPhone /> +92 328 1969250
+                  </a>
+                  <Link
+                    to="/loan-services"
+                    className="mt-4 block w-full text-center bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold py-3 rounded-xl"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Apply Now →
+                  </Link>
                 </div>
-
-                {/* Apply Now Mobile */}
-                <motion.a
-                  href="/loan-services"
-                  className="block w-full bg-gradient-to-r from-emerald-600 to-teal-600 text-white py-4 px-6 rounded-2xl font-bold text-center shadow-lg"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  Apply for Loan Now
-                </motion.a>
               </div>
-            </motion.nav>
-          )}
-        </AnimatePresence>
-      </motion.header>
-
-      {/* Scroll Progress Bar */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 to-teal-500 z-50 origin-left"
-        style={{
-          scaleX:
-            typeof window !== "undefined"
-              ? window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)
-              : 0,
-        }}
-        initial={{ scaleX: 0 }}
-      />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   )
 }

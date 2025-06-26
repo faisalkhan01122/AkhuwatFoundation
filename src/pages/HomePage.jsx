@@ -1,27 +1,19 @@
-"use client"
 
 import { Suspense, lazy } from "react"
 import { motion } from "framer-motion"
 import HeroSection from "../components/HeroSection"
 import FooterBar from "../components/FooterBar"
+import StatsCounter from "../components/StatsCounter"
 
 // Lazy load sections for better performance
-const AkhuwatScheme = lazy(() => import("../section/AkhuwatScheme"))
-const LoanInt = lazy(() => import("../section/LoanInt"))
+const WhyChooseUs = lazy(() => import("../section/WhyChooseUs"))
+const LoanCalculator = lazy(() => import("../section/LoanCalculator"))
 const OurServices = lazy(() => import("../section/OurServices"))
 const TestimonialsSection = lazy(() => import("../section/TestimonialsSection"))
-const LoanSection = lazy(() => import("../section/LoanSection"))
-const LoanCardSection = lazy(() => import("../section/LoanCardSection"))
-const AkhuwatLoanSection = lazy(() => import("../section/AkhuwatLoanSection"))
-const FeaturedCausesSection = lazy(() => import("../section/FeaturedCausesSection"))
-const AkhuwatTrustSection = lazy(() => import("../section/AkhuwatTrustSection"))
-const ApplyLoanSteps = lazy(() => import("../section/ApplyLoanSteps"))
-const LoanSchemeSection = lazy(() => import("../section/LoanSchemeSection"))
 const TeamSection = lazy(() => import("../section/TeamSection"))
-const AboutSection = lazy(() => import("../section/AboutSection"))
-const ServicesCarousel = lazy(() => import("../section/ServicesCarousel"))
-const FaqSection = lazy(() => import("../section/FaqSection"))
+const FeaturedCausesSection = lazy(() => import("../section/FeaturedCausesSection"))
 const CollaboratingPartnersSection = lazy(() => import("../section/CollaboratingPartnersSection"))
+const FaqSection = lazy(() => import("../section/FaqSection"))
 
 const SectionLoader = () => (
   <div className="flex justify-center items-center py-20">
@@ -30,7 +22,7 @@ const SectionLoader = () => (
         <div className="w-8 h-8 border-4 border-emerald-200 rounded-full animate-spin"></div>
         <div className="absolute inset-0 w-8 h-8 border-4 border-emerald-600 rounded-full border-t-transparent animate-spin"></div>
       </div>
-      <span className="text-gray-600 font-medium">Loading Akhuwat content...</span>
+      <span className="text-gray-600 font-medium">Loading Akhuwat Network content...</span>
     </div>
   </div>
 )
@@ -53,17 +45,20 @@ const HomePage = () => {
       <HeroSection />
       <FooterBar />
 
+      {/* Stats Counter */}
+      <StatsCounter />
+
       {/* Lazy loaded sections with staggered animations */}
       <LazySection>
-        <AkhuwatScheme />
+        <WhyChooseUs />
       </LazySection>
 
       <LazySection delay={0.1}>
-        <LoanInt />
+        <OurServices />
       </LazySection>
 
       <LazySection delay={0.2}>
-        <OurServices />
+        <LoanCalculator />
       </LazySection>
 
       <LazySection delay={0.1}>
@@ -71,31 +66,7 @@ const HomePage = () => {
       </LazySection>
 
       <LazySection delay={0.2}>
-        <LoanSection />
-      </LazySection>
-
-      <LazySection delay={0.1}>
-        <LoanCardSection />
-      </LazySection>
-
-      <LazySection delay={0.2}>
-        <AkhuwatLoanSection />
-      </LazySection>
-
-      <LazySection delay={0.1}>
         <FeaturedCausesSection />
-      </LazySection>
-
-      <LazySection delay={0.2}>
-        <AkhuwatTrustSection />
-      </LazySection>
-
-      <LazySection delay={0.1}>
-        <ApplyLoanSteps />
-      </LazySection>
-
-      <LazySection delay={0.2}>
-        <LoanSchemeSection />
       </LazySection>
 
       <LazySection delay={0.1}>
@@ -104,14 +75,6 @@ const HomePage = () => {
 
       <LazySection delay={0.2}>
         <CollaboratingPartnersSection />
-      </LazySection>
-
-      <LazySection delay={0.1}>
-        <AboutSection />
-      </LazySection>
-
-      <LazySection delay={0.2}>
-        <ServicesCarousel />
       </LazySection>
 
       <LazySection delay={0.1}>

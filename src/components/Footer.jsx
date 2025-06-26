@@ -35,7 +35,7 @@ const Footer = () => {
     {
       title: "Loan Types",
       links: [
-        { name: "Business Loans", href: "/loan-services", icon: "🏢" },
+        { name: "Business Loans", href: "/business-loans", icon: "🏢" },
         { name: "Personal Loans", href: "/loan-services", icon: "👤" },
         { name: "Education Loans", href: "/loan-services", icon: "🎓" },
         { name: "Housing Loans", href: "/loan-services", icon: "🏠" },
@@ -45,7 +45,7 @@ const Footer = () => {
     {
       title: "Support",
       links: [
-        { name: "Help Center", href: "/contact-us", icon: "❓" },
+        { name: "Help Center", href: "/help-center", icon: "❓" },
         { name: "Contact Us", href: "/contact-us", icon: "📞" },
         { name: "Privacy Policy", href: "/privacy-policy", icon: "🔒" },
         { name: "Terms & Conditions", href: "/terms-and-conditions", icon: "📋" },
