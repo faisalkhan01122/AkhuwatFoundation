@@ -182,129 +182,82 @@ const TeamSection = () => {
         </motion.div>
 
         {/* Team Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 mb-20">
-          {teamMembers.map((member, index) => (
-            <motion.div
-              key={member.id}
-              className="group bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-emerald-200"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.6 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -15 }}
-              onHoverStart={() => setHoveredMember(index)}
-              onHoverEnd={() => setHoveredMember(null)}
-            >
-              {/* Image Container */}
-              <div className="relative overflow-hidden h-80">
-                <motion.img
-                  src={member.image}
-                  alt={member.name}
-                  className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
-                  animate={hoveredMember === index ? { scale: 1.1 } : { scale: 1 }}
-                />
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {teamMembers.map((member, index) => (
+              <motion.div
+                key={member.id}
+                className="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl border border-gray-200 transition-all duration-500"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.6 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -10 }}
+              >
+                <div className="relative h-72 overflow-hidden">
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
 
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-                {/* Social Links */}
-                <motion.div
-                  className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  initial={{ y: 20 }}
-                  whileInView={{ y: 0 }}
-                  transition={{ delay: 0.3 }}
-                >
-                  {[
-                    { icon: FaLinkedin, link: member.social.linkedin, color: "bg-blue-600" },
-                    { icon: FaTwitter, link: member.social.twitter, color: "bg-sky-500" },
-                    { icon: FaEnvelope, link: `mailto:${member.social.email}`, color: "bg-emerald-600" },
-                    { icon: FaPhone, link: `tel:${member.social.phone}`, color: "bg-purple-600" },
-                  ].map((social, i) => (
-                    <motion.a
-                      key={i}
-                      href={social.link}
-                      className={`w-12 h-12 ${social.color} rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform duration-300 shadow-lg`}
-                      whileHover={{ scale: 1.2, rotate: 360 }}
-                      whileTap={{ scale: 0.9 }}
-                    >
-                      <social.icon className="w-5 h-5" />
-                    </motion.a>
-                  ))}
-                </motion.div>
-
-                {/* Role Badge */}
-                <div
-                  className={`absolute top-4 left-4 px-4 py-2 rounded-full text-white text-sm font-bold bg-gradient-to-r ${member.color}`}
-                >
-                  {member.role.split(" ")[0]}
+                  <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    {[{ icon: FaLinkedin, link: member.social.linkedin }, { icon: FaTwitter, link: member.social.twitter }, { icon: FaEnvelope, link: `mailto:${member.social.email}` }, { icon: FaPhone, link: `tel:${member.social.phone}` }].map((social, i) => (
+                      <a
+                        key={i}
+                        href={social.link}
+                        className="w-10 h-10 bg-white/90 text-gray-700 hover:text-emerald-600 rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-all duration-300"
+                      >
+                        <social.icon className="w-4 h-4" />
+                      </a>
+                    ))}
+                  </div>
                 </div>
 
-                {/* Experience Badge */}
-                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-gray-800">
-                  {member.experience}
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="p-8">
-                <motion.h3
-                  className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-emerald-600 transition-colors duration-300"
-                  whileHover={{ x: 5 }}
-                >
-                  {member.name}
-                </motion.h3>
-
-                <p className="text-emerald-600 font-semibold text-lg mb-4">{member.role}</p>
-
-                <p className="text-gray-600 mb-6 leading-relaxed">{member.bio}</p>
-
-                {/* Location & Contact */}
-                <div className="space-y-3 mb-6">
-                  <div className="flex items-center gap-3 text-sm text-gray-500">
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-1">
+                    {member.name}
+                  </h3>
+                  <p className="text-emerald-600 font-semibold text-sm mb-3">
+                    {member.role}
+                  </p>
+                  <p className="text-gray-600 text-sm mb-4">
+                    {member.bio}
+                  </p>
+                  <div className="text-sm text-gray-500 mb-2 flex items-center gap-2">
                     <FaMapMarkerAlt className="text-emerald-500" />
                     <span>{member.location}</span>
                   </div>
-                  <div className="flex items-center gap-3 text-sm text-gray-500">
+                  <div className="text-sm text-gray-500 mb-4 flex items-center gap-2">
                     <FaEnvelope className="text-blue-500" />
-                    <a href={`mailto:${member.social.email}`} className="hover:text-blue-600 transition-colors">
+                    <a href={`mailto:${member.social.email}`} className="hover:text-blue-600">
                       {member.social.email}
                     </a>
                   </div>
+
+                  <div className="mb-4">
+                    <h4 className="text-sm font-bold text-gray-700 mb-2 flex items-center gap-2">
+                      <FaAward className="text-yellow-500" /> Achievements
+                    </h4>
+                    <ul className="space-y-1 list-disc list-inside text-gray-600 text-sm">
+                      {member.achievements.map((a, i) => (
+                        <li key={i}>{a}</li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <motion.a
+                    href={`mailto:${member.social.email}`}
+                    className={`inline-flex items-center justify-center w-full py-2.5 px-5 text-white font-semibold rounded-xl shadow-md bg-gradient-to-r ${member.color} hover:opacity-90 transition duration-300`}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <FaEnvelope className="mr-2" /> Connect
+                  </motion.a>
                 </div>
-
-                {/* Achievements */}
-                <div className="space-y-2 mb-6">
-                  <h4 className="text-sm font-bold text-gray-800 mb-3 flex items-center gap-2">
-                    <FaAward className="text-yellow-500" />
-                    Key Achievements
-                  </h4>
-                  {member.achievements.map((achievement, i) => (
-                    <div key={i} className="flex items-center gap-2 text-sm text-gray-600">
-                      <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
-                      <span>{achievement}</span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Connect Button */}
-                <motion.a
-                  href={`mailto:${member.social.email}`}
-                  className={`w-full py-3 rounded-2xl text-white font-bold bg-gradient-to-r ${member.color} hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-3`}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <FaEnvelope />
-                  Connect
-                </motion.a>
-              </div>
-
-              {/* Hover Glow Effect */}
-              <div
-                className={`absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-gradient-to-r ${member.color} blur-xl -z-10`}
-              ></div>
-            </motion.div>
-          ))}
-        </div>
+              </motion.div>
+            ))}
+          </div>
 
         {/* Enhanced Join Mission Section */}
         <motion.div

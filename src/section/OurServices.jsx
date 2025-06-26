@@ -1,5 +1,3 @@
-"use client"
-
 import { motion } from "framer-motion"
 import { useState } from "react"
 import {
@@ -171,113 +169,60 @@ const OurServices = () => {
         </motion.div>
 
         {/* Enhanced Services Grid */}
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
           {services.map((service, index) => (
             <motion.div
               key={index}
-              className="group relative bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-emerald-200"
-              initial={{ opacity: 0, y: 50 }}
+              className="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl border border-gray-200 transition-all duration-500"
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1, duration: 0.6 }}
               viewport={{ once: true }}
-              whileHover={{ y: -15 }}
-              onHoverStart={() => setHoveredCard(index)}
-              onHoverEnd={() => setHoveredCard(null)}
+              whileHover={{ y: -10 }}
             >
-              {/* Popular Badge */}
-              {service.popular && (
-                <div className="absolute top-6 left-6 z-20 bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
-                  ⭐ Most Popular
-                </div>
-              )}
-
-              {/* Image Container */}
-              <div className="relative overflow-hidden h-56">
-                <motion.img
+              <div className="relative h-60 overflow-hidden">
+                <img
                   src={service.image || "/placeholder.svg"}
                   alt={service.title}
-                  className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
-                  animate={hoveredCard === index ? { scale: 1.1 } : { scale: 1 }}
+                  className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
                 />
-
-                {/* Gradient Overlay */}
-                <div
-                  className={`absolute inset-0 bg-gradient-to-t ${service.color} opacity-0 group-hover:opacity-80 transition-opacity duration-500`}
-                />
-
-                {/* Icon Overlay */}
-                <motion.div
-                  className="absolute top-6 right-6 bg-white/90 backdrop-blur-sm rounded-full p-4 transform translate-x-16 group-hover:translate-x-0 transition-transform duration-500"
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.6 }}
-                >
-                  <div className={`text-3xl bg-gradient-to-r ${service.color} bg-clip-text text-transparent`}>
-                    {service.icon}
-                  </div>
-                </motion.div>
-
-                {/* Hover CTA */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <motion.a
-                    href={service.link}
-                    className="bg-white text-gray-900 px-8 py-4 rounded-full font-bold hover:bg-gray-100 transition-colors duration-300 flex items-center gap-3 shadow-2xl"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    Apply Now <FaArrowRight />
-                  </motion.a>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
+                <div className="absolute top-4 left-4">
+                  {service.popular && (
+                    <span className="bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs font-semibold px-4 py-1 rounded-full shadow">
+                      ⭐ Most Popular
+                    </span>
+                  )}
                 </div>
               </div>
 
-              {/* Content */}
-              <div className="p-8">
-                <motion.h3
-                  className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-emerald-600 transition-colors duration-300"
-                  whileHover={{ x: 5 }}
-                >
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
                   {service.title}
-                </motion.h3>
+                </h3>
+                <p className="text-gray-600 mb-4 text-sm leading-relaxed">
+                  {service.desc}
+                </p>
 
-                <p className="text-gray-600 mb-6 leading-relaxed">{service.desc}</p>
-
-                {/* Features List */}
-                <div className="space-y-3 mb-8">
-                  {service.features.map((feature, featureIndex) => (
-                    <motion.div
-                      key={featureIndex}
-                      className="flex items-center gap-3"
-                      initial={{ opacity: 0, x: -10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.1 * featureIndex, duration: 0.3 }}
-                      viewport={{ once: true }}
-                    >
-                      <FaCheckCircle className="text-emerald-500 text-lg flex-shrink-0" />
-                      <span className="text-gray-700 font-medium">{feature}</span>
-                    </motion.div>
+                <ul className="space-y-2 mb-6">
+                  {service.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-center text-gray-700 text-sm">
+                      <FaCheckCircle className="text-emerald-500 mr-2" /> {feature}
+                    </li>
                   ))}
-                </div>
+                </ul>
 
-                {/* Action Button */}
                 <motion.a
                   href={service.link}
-                  className={`w-full py-4 rounded-2xl text-white font-bold text-lg bg-gradient-to-r ${service.color} hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-3 group/btn`}
+                  className={`inline-flex items-center justify-center w-full py-3 px-6 text-white font-semibold rounded-xl shadow-md bg-gradient-to-r ${service.color} hover:opacity-90 transition duration-300`}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <span>Learn More</span>
-                  <motion.div
-                    animate={{ x: [0, 5, 0] }}
-                    transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY }}
-                  >
-                    <FaArrowRight className="w-5 h-5" />
-                  </motion.div>
+                  Learn More <FaArrowRight className="ml-2" />
                 </motion.a>
               </div>
 
-              {/* Hover Glow Effect */}
-              <div
-                className={`absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-gradient-to-r ${service.color} blur-xl -z-10`}
-              ></div>
+              <div className={`absolute inset-0 opacity-0 group-hover:opacity-40 transition-opacity duration-500 bg-gradient-to-r ${service.color} blur-xl`} />
             </motion.div>
           ))}
         </div>

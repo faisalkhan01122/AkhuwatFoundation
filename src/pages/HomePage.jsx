@@ -15,6 +15,8 @@ const FeaturedCausesSection = lazy(() => import("../section/FeaturedCausesSectio
 const CollaboratingPartnersSection = lazy(() => import("../section/CollaboratingPartnersSection"))
 const FaqSection = lazy(() => import("../section/FaqSection"))
 
+
+
 const SectionLoader = () => (
   <div className="flex justify-center items-center py-20">
     <div className="flex items-center gap-4">
