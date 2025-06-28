@@ -205,7 +205,9 @@ const WhyChooseUs = () => {
                   viewport={{ once: true }}
                 >
                   <motion.a
-                    href="/loan-services"
+                    href="https://wa.me/923281969250"
+  target="_blank"
+  rel="noopener noreferrer"
                     className="bg-white text-emerald-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-emerald-50 transition-all duration-300 shadow-lg text-center"
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+
 import {
   FaArrowRight,
   FaPlay,
@@ -57,7 +58,7 @@ const HeroSection = () => {
     }, 8000);
     return () => clearInterval(interval);
   }, []);
-
+  const [showModal, setShowModal] = useState(false);
   return (
     <section className="relative w-full min-h-screen overflow-hidden">
       <AnimatePresence mode="wait">
@@ -107,14 +108,60 @@ const HeroSection = () => {
 
           <div className="flex flex-wrap gap-4">
             <a
-              href="/loan-services"
+             href="https://wa.me/923281969250"
+  target="_blank"
+  rel="noopener noreferrer"
               className="bg-white text-gray-800 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition"
             >
               Apply Now
             </a>
-            <button className="flex items-center gap-2 text-white border border-white px-6 py-3 rounded-full hover:bg-white hover:text-black transition">
-              <FaPlay /> Watch Story
-            </button>
+             {/* Button */}
+    {/* Button */}
+      <button
+        onClick={() => setShowModal(true)}
+        className="flex items-center gap-2 text-white border border-white px-6 py-3 rounded-full hover:bg-white hover:text-black transition"
+      >
+        <FaPlay /> Watch Story
+      </button>
+
+      {/* Modal */}
+      <AnimatePresence>
+        {showModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center"
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="relative w-full max-w-3xl mx-4 sm:mx-auto p-4 bg-black rounded-lg shadow-xl"
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setShowModal(false)}
+                className="absolute top-3 right-4 text-white text-3xl font-bold"
+              >
+                &times;
+              </button>
+
+              {/* Responsive YouTube Embed */}
+              <div className="aspect-w-16 aspect-h-9">
+                <iframe
+                  className="w-full h-96 rounded-lg"
+                  src="https://www.youtube.com/embed/CkNYmST2olo"
+                  title="Story Video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
           </div>
         </motion.div>
 

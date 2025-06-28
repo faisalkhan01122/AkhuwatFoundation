@@ -26,20 +26,20 @@ const Footer = () => {
       title: "Quick Links",
       links: [
         { name: "Home", href: "/", icon: "🏠" },
-        { name: "Loan Services", href: "/loan-services", icon: "💰" },
-        { name: "About Akhuwat", href: "/about-us", icon: "ℹ️" },
-        { name: "Apply Online", href: "/loan-services", icon: "📝" },
-        { name: "Success Stories", href: "/about-us", icon: "⭐" },
+        { name: "Loan Services", href: "/loans", icon: "💰" },
+        { name: "About Akhuwat", href: "/about", icon: "ℹ️" },
+        { name: "Apply Online", href: "/loans", icon: "📝" },
+        { name: "Success Stories", href: "/about", icon: "⭐" },
       ],
     },
     {
       title: "Loan Types",
       links: [
-        { name: "Business Loans", href: "/business-loans", icon: "🏢" },
-        { name: "Personal Loans", href: "/loan-services", icon: "👤" },
-        { name: "Education Loans", href: "/loan-services", icon: "🎓" },
-        { name: "Housing Loans", href: "/loan-services", icon: "🏠" },
-        { name: "Emergency Loans", href: "/loan-services", icon: "🚨" },
+        { name: "Business Loans", href: "/loans/business", icon: "🏢" },
+        { name: "Personal Loans", href: "/loans/personal", icon: "👤" },
+        { name: "Education Loans", href: "/loans/education", icon: "🎓" },
+        { name: "Housing Loans", href: "/loans/housing", icon: "🏠" },
+        { name: "Emergency Loans", href: "/loans/emergency", icon: "🚨" },
       ],
     },
     {
@@ -165,7 +165,7 @@ const Footer = () => {
                   whileHover={{ scale: 1.1, rotate: 360 }}
                   transition={{ duration: 0.8 }}
                 >
-                  <img src="/akhuwatfundslogo.png" alt="Akhuwat Network" className="w-16 h-16 rounded-full shadow-lg" />
+                  <img src="/akhuwatfundslogo.png" alt="Akhuwat Network" className="w-24 h-16 rounded-full shadow-lg" />
                   <div className="absolute -inset-1 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur"></div>
                 </motion.div>
                 <div>

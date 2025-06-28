@@ -15,6 +15,7 @@ import {
   FaGlobe,
   FaStar,
 } from "react-icons/fa"
+import { Link } from "react-router-dom"
 
 const causes = [
   {
@@ -348,7 +349,7 @@ const FeaturedCausesSection = () => {
                   whileTap={{ scale: 0.98 }}
                 >
                   <FaHeart className="w-5 h-5" />
-                  <span>Donate Now</span>
+                  <Link to={'/contact-us'}>Donate Now</Link>
                   <motion.div
                     animate={{ x: [0, 5, 0] }}
                     transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY }}
@@ -384,14 +385,15 @@ const FeaturedCausesSection = () => {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <motion.button
+                <motion.a 
+                href="/contact-us"
                   className="bg-white text-emerald-600 px-10 py-5 rounded-full font-bold text-xl hover:bg-gray-100 transition-all duration-300 shadow-2xl flex items-center justify-center gap-3"
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   <FaDonate />
                   Start Donating Today
-                </motion.button>
+                </motion.a>
 
                 <motion.button
                   className="bg-white/10 backdrop-blur-sm border-2 border-white text-white px-10 py-5 rounded-full font-bold text-xl hover:bg-white/20 transition-all duration-300 flex items-center justify-center gap-3"

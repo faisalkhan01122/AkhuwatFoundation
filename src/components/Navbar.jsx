@@ -30,19 +30,19 @@ const Navbar = () => {
   }, [])
 
   const loanServices = [
-    { name: "Business Loans", path: "/business-loans", icon: FaBuilding, desc: "Up to ₨30 Lacs for business growth" },
-    { name: "Microfinance Loans", path: "/microfinance-loans", icon: FaUsers, desc: "₨50K-₨5L for small entrepreneurs" },
-    { name: "Personal Loans", path: "/personal-loans", icon: FaUser, desc: "Up to ₨15 Lacs for personal needs" },
-    { name: "Healthcare Loans", path: "/healthcare-loans", icon: FaMedkit, desc: "Medical emergency financing" },
-    { name: "Education Loans", path: "/education-loans", icon: FaGraduationCap, desc: "Complete education support" },
-    { name: "Housing Loans", path: "/housing-loans", icon: FaHome, desc: "Up to ₨50 Lacs for dream homes" },
-    { name: "Emergency Loans", path: "/emergency-loans", icon: FaExclamationTriangle, desc: "Instant crisis support" },
+    { name: "Business Loans", path: "/loans/business", icon: FaBuilding, desc: "Up to ₨30 Lacs for business growth" },
+    { name: "Microfinance Loans", path: "/loans/microfinance", icon: FaUsers, desc: "₨50K-₨5L for small entrepreneurs" },
+    { name: "Personal Loans", path: "/loans/personal", icon: FaUser, desc: "Up to ₨15 Lacs for personal needs" },
+    { name: "Healthcare Loans", path: "/loans/healthcare", icon: FaMedkit, desc: "Medical emergency financing" },
+    { name: "Education Loans", path: "/loans/education", icon: FaGraduationCap, desc: "Complete education support" },
+    { name: "Housing Loans", path: "/loans/housing", icon: FaHome, desc: "Up to ₨50 Lacs for dream homes" },
+    { name: "Emergency Loans", path: "/loans/emergency", icon: FaExclamationTriangle, desc: "Instant crisis support" },
   ]
 
   const navItems = [
     { name: "Home", path: "/" },
-    { name: "About Us", path: "/about-us" },
-    { name: "Loan Services", path: "/loan-services", dropdown: loanServices },
+    { name: "About Us", path: "/about" },
+    { name: "Loan Services", path: "/loans", dropdown: loanServices },
     { name: "Impact", path: "/impact" },
     { name: "Contact", path: "/contact-us" },
     { name: "Help Center", path: "/help-center" },
@@ -129,12 +129,15 @@ const Navbar = () => {
             <a href="tel:+923281969250" className="text-sm font-medium text-blue-600 hover:underline flex items-center gap-2">
               <FaPhone /> +92 328 1969250
             </a>
-            <Link
-              to="/loan-services"
-              className="bg-gradient-to-r from-emerald-600 to-teal-600 px-5 py-2 rounded-full text-white font-semibold hover:shadow-lg"
-            >
-              Apply Now →
-            </Link>
+           <a
+  href="https://wa.me/923281969250"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="bg-gradient-to-r from-emerald-600 to-teal-600 px-5 py-2 rounded-full text-white font-semibold hover:shadow-lg"
+>
+  Apply Now →
+</a>
+
           </div>
 
           {/* Mobile Button */}
@@ -198,13 +201,15 @@ const Navbar = () => {
                   >
                     <FaPhone /> +92 328 1969250
                   </a>
-                  <Link
-                    to="/loan-services"
+                  <a
+                   href="https://wa.me/923281969250"
+  target="_blank"
+  rel="noopener noreferrer"
                     className="mt-4 block w-full text-center bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold py-3 rounded-xl"
                     onClick={() => setIsOpen(false)}
                   >
                     Apply Now →
-                  </Link>
+                  </a>
                 </div>
               </div>
             </motion.div>

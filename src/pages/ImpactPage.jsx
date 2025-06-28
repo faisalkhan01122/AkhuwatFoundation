@@ -11,7 +11,7 @@ const ImpactPage = () => {
       title: "Empowering Women Entrepreneurs",
       description:
         "Fatima Khan from Karachi started her tailoring business with a ₨200,000 interest-free loan from Akhuwat. Today, she employs 15 women and has transformed her community.",
-      image: "/akhuwatfoundationpersonalloans.jpg",
+      image: "https://assets.entrepreneur.com/content/3x2/2000/20170324044343-executive-461652-1920.jpeg",
       stats: { beneficiaries: "2.1M+", category: "Women Entrepreneurs" },
       color: "from-pink-500 to-rose-600",
     },
@@ -234,7 +234,7 @@ const ImpactPage = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.a
-                href="/loan-services"
+                href="/loans"
                 className="bg-white text-emerald-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-emerald-50 transition-all duration-300"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}

@@ -46,7 +46,7 @@ const testimonials = [
     id: 4,
     name: "Rashida Khatoon",
     role: "Healthcare Worker",
-    image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
+    image: "/istockphoto-1145045107-612x612.jpg",
     text: "When my husband needed urgent surgery, Akhuwat's healthcare loan saved our family from financial ruin. The quick approval and compassionate staff made a difficult time bearable. We're forever grateful for their support.",
     rating: 5,
     location: "Faisalabad, Punjab",

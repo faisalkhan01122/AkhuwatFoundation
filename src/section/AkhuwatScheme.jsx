@@ -164,13 +164,16 @@ const AkhuwatScheme = () => {
               transition={{ delay: 0.8, duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <motion.button
+              <motion.a
+              href="https://wa.me/923281969250"
+  target="_blank"
+  rel="noopener noreferrer"
                 className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 animate-pulse-glow"
                 whileHover={isSmallScreen ? {} : { scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 Apply Now
-              </motion.button>
+              </motion.a>
             </motion.div>
           </motion.div>
         </div>

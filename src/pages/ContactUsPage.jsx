@@ -1,256 +1,463 @@
 "use client"
-import HeroImgSection from "../components/HeroImgSection"
+
 import { motion } from "framer-motion"
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaWhatsapp } from "react-icons/fa"
+import { useState } from "react"
+import {
+  FaPhone,
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaClock,
+  FaFacebook,
+  FaTwitter,
+  FaLinkedin,
+  FaInstagram,
+  FaWhatsapp,
+  FaPaperPlane,
+  FaUser,
+  FaComments,
+} from "react-icons/fa"
 
 const ContactUsPage = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
+  })
+
+  const contactInfo = [
+    {
+      icon: FaPhone,
+      title: "Phone Numbers",
+      details: ["+92 328 1969250", ],
+      color: "text-blue-600",
+      bgColor: "from-blue-50 to-blue-100",
+    },
+    {
+      icon: FaEnvelope,
+      title: "Email Addresses",
+      details: ["info@akhuwat.org.pk", ],
+      color: "text-emerald-600",
+      bgColor: "from-emerald-50 to-emerald-100",
+    },
+    {
+      icon: FaMapMarkerAlt,
+      title: "Head Office",
+      details: ["Akhuwat Islamic Microfinance", "House 45, Street 12, F-8/1", "Islamabad, Pakistan"],
+      color: "text-purple-600",
+      bgColor: "from-purple-50 to-purple-100",
+    },
+    {
+      icon: FaClock,
+      title: "Business Hours",
+      details: ["Monday - Friday: 9:00 AM - 6:00 PM", "Saturday: 9:00 AM - 2:00 PM", "Sunday: Closed"],
+      color: "text-orange-600",
+      bgColor: "from-orange-50 to-orange-100",
+    },
+  ]
+
+  const branches = [
+    // { city: "Lahore", address: "92-A/1, Gulberg III, Lahore", phone: "+92 42 111 253 428" },
+    // { city: "Karachi", address: "Plot 123, Block A, Gulshan-e-Iqbal, Karachi", phone: "+92 21 111 253 428" },
+    { city: "Islamabad", address: "House 45, Street 12, F-8/1, Islamabad", phone: "+92 328 1969250" },
+    // { city: "Faisalabad", address: "123 Civil Lines, Faisalabad", phone: "+92 41 111 253 428" },
+    // { city: "Multan", address: "456 Cantt Area, Multan", phone: "+92 61 111 253 428" },
+    // { city: "Peshawar", address: "789 University Road, Peshawar", phone: "+92 91 111 253 428" },
+  ]
+
+  const handleInputChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    })
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    // Handle form submission
+    console.log("Form submitted:", formData)
+  }
+
   return (
-    <>
-      <HeroImgSection imageUrl="/contactus.jpg" text="Contact Us" />
+    <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-blue-50">
+      {/* Hero Section */}
+      <section className="relative py-24 overflow-hidden">
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-20 left-10 w-96 h-96 bg-blue-400 rounded-full animate-float blur-3xl"></div>
+          <div className="absolute bottom-32 right-20 w-80 h-80 bg-emerald-400 rounded-full animate-float-reverse blur-3xl"></div>
+        </div>
 
-      {/* Contact Images Section */}
-      <section className="max-w-7xl mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="max-w-7xl mx-auto px-4 relative z-10">
           <motion.div
-            className="relative overflow-hidden rounded-2xl shadow-2xl hover-lift"
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            className="text-center"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
           >
-            <img
-              src="/bussnsloa.jpg"
-              alt="Business Loan - Akhuwat Foundation"
-              className="w-full h-64 md:h-80 object-cover transition-transform duration-700 hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
             <motion.div
-              className="absolute bottom-6 left-6 text-white"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-              viewport={{ once: true }}
+              className="flex items-center justify-center gap-4 mb-8"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
             >
-              <h3 className="text-xl font-bold mb-2">Business Loans</h3>
-              <p className="text-sm">Grow your business with interest-free loans</p>
+              <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-emerald-600 rounded-full flex items-center justify-center shadow-2xl">
+                <FaComments className="text-white text-2xl" />
+              </div>
+              <div className="text-left">
+                <span className="text-blue-600 font-bold text-xl block">Akhuwat Network</span>
+                <span className="text-gray-500 text-sm">Get in Touch With Us</span>
+              </div>
             </motion.div>
-          </motion.div>
 
-          <motion.div
-            className="relative overflow-hidden rounded-2xl shadow-2xl hover-lift"
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <img
-              src="/homeloaan.jpg"
-              alt="Home Loan - Akhuwat Foundation"
-              className="w-full h-64 md:h-80 object-cover transition-transform duration-700 hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-            <motion.div
-              className="absolute bottom-6 left-6 text-white"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-              viewport={{ once: true }}
+            <motion.h1
+              className="text-5xl md:text-7xl font-black text-gray-900 mb-8"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
             >
-              <h3 className="text-xl font-bold mb-2">Home Loans</h3>
-              <p className="text-sm">Build your dream home with our support</p>
-            </motion.div>
+              Contact{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600">Us</span>
+            </motion.h1>
+
+            <motion.p
+              className="text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+            >
+              We're here to help you with all your questions and loan applications. Reach out to us through any of the
+              channels below, and our team will get back to you promptly.
+            </motion.p>
           </motion.div>
         </div>
       </section>
 
-      {/* Contact Information Cards */}
-      <section className="py-16 bg-gradient-to-br from-green-50 to-emerald-50">
+      {/* Contact Information */}
+      <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
-            className="text-center mb-12"
+            className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Get in <span className="gradient-text">Touch</span>
+            <h2 className="text-5xl font-black text-gray-900 mb-8">
+              Get in{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600">Touch</span>
             </h2>
-            <p className="text-xl text-gray-600">We're here to help you with your loan needs</p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
-            {[
-              {
-                icon: <FaPhone />,
-                title: "Call Us",
-                info: "+92 328 1969250",
-                description: "Available 24/7 for your queries",
-                color: "from-blue-500 to-blue-600",
-                link: "tel:+923281969250",
-              },
-              {
-                icon: <FaWhatsapp />,
-                title: "WhatsApp",
-                info: "+92 328 1969250",
-                description: "Quick support via WhatsApp",
-                color: "from-green-500 to-green-600",
-                link: "https://wa.me/+923281969250",
-              },
-              {
-                icon: <FaEnvelope />,
-                title: "Email Us",
-                info: "support@akhuwat.network",
-                description: "Send us your detailed queries",
-                color: "from-purple-500 to-purple-600",
-                link: "mailto:support@akhuwat.network",
-              },
-            ].map((contact, index) => (
-              <motion.a
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {contactInfo.map((info, index) => (
+              <motion.div
                 key={index}
-                href={contact.link}
-                className="block bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover-lift text-center group"
+                className={`bg-gradient-to-br ${info.bgColor} rounded-3xl p-8 shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-500`}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1, duration: 0.6 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -10 }}
               >
-                <motion.div
-                  className={`w-16 h-16 bg-gradient-to-r ${contact.color} rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.6 }}
-                >
-                  {contact.icon}
-                </motion.div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors duration-300">
-                  {contact.title}
-                </h3>
-                <p className="text-lg font-semibold text-gray-700 mb-2">{contact.info}</p>
-                <p className="text-gray-600">{contact.description}</p>
-              </motion.a>
+                <div className="text-center">
+                  <div
+                    className={`w-16 h-16 ${info.color} bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg`}
+                  >
+                    <info.icon className="text-2xl" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">{info.title}</h3>
+                  <div className="space-y-2">
+                    {info.details.map((detail, i) => (
+                      <p key={i} className="text-gray-700 text-sm">
+                        {detail}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Contact Form Section */}
-      <section className="bg-gradient-to-r from-green-800 to-emerald-900 text-white py-20 px-4 relative overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 left-10 w-32 h-32 bg-white rounded-full animate-float"></div>
-          <div className="absolute bottom-20 right-20 w-24 h-24 bg-white rounded-full animate-float-reverse"></div>
-        </div>
+      {/* Contact Form & Map */}
+      <section className="py-24 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-16">
+            {/* Contact Form */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <div className="bg-white rounded-3xl shadow-2xl p-12 border border-gray-100">
+                <div className="flex items-center gap-4 mb-8">
+                  <FaPaperPlane className="text-3xl text-blue-600" />
+                  <h3 className="text-3xl font-bold text-gray-900">Send us a Message</h3>
+                </div>
 
-        <div className="max-w-4xl mx-auto relative z-10">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">Full Name</label>
+                      <div className="relative">
+                        <FaUser className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                        <input
+                          type="text"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                          placeholder="Enter your full name"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
+                      <div className="relative">
+                        <FaEnvelope className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                        <input
+                          type="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                          placeholder="Enter your email"
+                          required
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">Phone Number</label>
+                      <div className="relative">
+                        <FaPhone className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                        <input
+                          type="tel"
+                          name="phone"
+                          value={formData.phone}
+                          onChange={handleInputChange}
+                          className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                          placeholder="Enter your phone number"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">Subject</label>
+                      <select
+                        name="subject"
+                        value={formData.subject}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-4 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                        required
+                      >
+                        <option value="">Select a subject</option>
+                        <option value="loan-inquiry">Loan Inquiry</option>
+                        <option value="application-status">Application Status</option>
+                        <option value="general-support">General Support</option>
+                        <option value="complaint">Complaint</option>
+                        <option value="partnership">Partnership</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Message</label>
+                    <textarea
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      rows={6}
+                      className="w-full px-4 py-4 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 resize-none"
+                      placeholder="Tell us how we can help you..."
+                      required
+                    ></textarea>
+                  </div>
+
+                  <motion.button
+                    type="submit"
+                    className="w-full bg-gradient-to-r from-blue-600 to-emerald-600 text-white py-4 rounded-2xl font-bold text-lg hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-3"
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <FaPaperPlane />
+                    Send Message
+                  </motion.button>
+                </form>
+              </div>
+            </motion.div>
+
+            {/* Map & Quick Contact */}
+            <motion.div
+              className="space-y-8"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              {/* Map Placeholder */}
+              <div className="bg-white rounded-3xl shadow-2xl p-8 border border-gray-100">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Find Our Head Office</h3>
+                <div className="bg-gray-200 rounded-2xl h-64 flex items-center justify-center">
+                  <div className="text-center">
+                    <FaMapMarkerAlt className="text-4xl text-gray-400 mx-auto mb-4" />
+                    <p className="text-gray-600">Interactive Map</p>
+                    <p className="text-sm text-gray-500">92-A/1, Gulberg III, Lahore</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Quick Contact */}
+              <div className="bg-white rounded-3xl shadow-2xl p-8 border border-gray-100">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Quick Contact</h3>
+                <div className="space-y-4">
+                  <motion.a
+                    href="tel:+923281969250"
+                    className="flex items-center gap-4 p-4 bg-blue-50 rounded-2xl hover:bg-blue-100 transition-all duration-300"
+                    whileHover={{ x: 5 }}
+                  >
+                    <FaPhone className="text-blue-600 text-xl" />
+                    <div>
+                      <p className="font-semibold text-gray-900">Call Us Now</p>
+                      <p className="text-sm text-gray-600">+92 328 1969250</p>
+                    </div>
+                  </motion.a>
+
+                  <motion.a
+                    href="https://wa.me/923281969250"
+                    className="flex items-center gap-4 p-4 bg-emerald-50 rounded-2xl hover:bg-emerald-100 transition-all duration-300"
+                    whileHover={{ x: 5 }}
+                  >
+                    <FaWhatsapp className="text-emerald-600 text-xl" />
+                    <div>
+                      <p className="font-semibold text-gray-900">WhatsApp</p>
+                      <p className="text-sm text-gray-600">Chat with us instantly</p>
+                    </div>
+                  </motion.a>
+
+                  <motion.a
+                    href="mailto:info@akhuwat.org.pk"
+                    className="flex items-center gap-4 p-4 bg-purple-50 rounded-2xl hover:bg-purple-100 transition-all duration-300"
+                    whileHover={{ x: 5 }}
+                  >
+                    <FaEnvelope className="text-purple-600 text-xl" />
+                    <div>
+                      <p className="font-semibold text-gray-900">Email Us</p>
+                      <p className="text-sm text-gray-600">info@akhuwat.org.pk</p>
+                    </div>
+                  </motion.a>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Branch Locations */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
           <motion.div
-            className="text-center mb-12"
+            className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Send Us a Message</h2>
-            <p className="text-xl text-green-100">We'll get back to you within 24 hours</p>
+            <h2 className="text-5xl font-black text-gray-900 mb-8">
+              Our{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600">
+                Branches
+              </span>
+            </h2>
+            <p className="text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+              Visit any of our branches across Pakistan for personalized assistance
+            </p>
           </motion.div>
 
-          <motion.div
-            className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 md:p-12 shadow-2xl"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <form action="submit" method="POST" className="space-y-6">
-              <input type="hidden" name="_token" value="cSdACfwvRRbJpn1dO88IcqHwYIIlGWVmzRTlhvGT" autoComplete="off" />
-
-              <div className="grid md:grid-cols-2 gap-6">
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3, duration: 0.6 }}
-                  viewport={{ once: true }}
-                >
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Your Full Name"
-                    required
-                    className="w-full p-4 rounded-xl border-none text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-green-400 transition-all duration-300"
-                  />
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.4, duration: 0.6 }}
-                  viewport={{ once: true }}
-                >
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Your Email Address"
-                    required
-                    className="w-full p-4 rounded-xl border-none text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-green-400 transition-all duration-300"
-                  />
-                </motion.div>
-              </div>
-
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {branches.map((branch, index) => (
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                key={index}
+                className="bg-gradient-to-br from-blue-50 to-emerald-50 rounded-3xl p-8 shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-500"
+                initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.6 }}
+                transition={{ delay: index * 0.1, duration: 0.6 }}
                 viewport={{ once: true }}
+                whileHover={{ y: -5 }}
               >
-                <textarea
-                  name="message"
-                  placeholder="Tell us about your loan requirements..."
-                  rows={6}
-                  required
-                  className="w-full p-4 rounded-xl border-none text-gray-900 placeholder-gray-500 resize-none focus:ring-2 focus:ring-green-400 transition-all duration-300"
-                ></textarea>
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                    <FaMapMarkerAlt className="text-white text-2xl" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">{branch.city}</h3>
+                  <p className="text-gray-700 mb-4">{branch.address}</p>
+                  <div className="flex items-center justify-center gap-2 text-blue-600 font-semibold">
+                    <FaPhone className="text-sm" />
+                    <span>{branch.phone}</span>
+                  </div>
+                </div>
               </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-              <motion.div
-                className="text-center"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6, duration: 0.6 }}
-                viewport={{ once: true }}
-              >
-                <motion.button
-                  type="submit"
-                  className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold px-12 py-4 rounded-full text-lg shadow-lg hover:shadow-xl transition-all duration-300 btn-animate"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Send Message 📧
-                </motion.button>
-              </motion.div>
-            </form>
-          </motion.div>
-
-          {/* Address Section */}
+      {/* Social Media & CTA */}
+      <section className="py-24 bg-gradient-to-r from-blue-600 to-emerald-600 text-white">
+        <div className="max-w-4xl mx-auto px-4">
           <motion.div
-            className="mt-16 text-center"
+            className="text-center"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <div className="flex items-center justify-center mb-4">
-              <FaMapMarkerAlt className="text-2xl text-green-300 mr-3" />
-              <h3 className="text-2xl font-bold">Visit Our Office</h3>
-            </div>
-            <p className="text-lg text-green-100 leading-relaxed">
-              New Shahbaz Building Thandi Sadak
-              <br />
-              Hyderabad, Pakistan
+            <h2 className="text-4xl font-bold mb-8">Stay Connected</h2>
+            <p className="text-xl text-blue-100 mb-12 leading-relaxed">
+              Follow us on social media for the latest updates, success stories, and financial tips. We're always here
+              to support your journey to financial empowerment.
             </p>
+
+            <div className="flex justify-center gap-6 mb-12">
+              {[
+                { icon: FaFacebook, href: "#", color: "hover:bg-blue-700" },
+                { icon: FaTwitter, href: "#", color: "hover:bg-blue-400" },
+                { icon: FaLinkedin, href: "#", color: "hover:bg-blue-800" },
+                { icon: FaInstagram, href: "#", color: "hover:bg-pink-600" },
+                { icon: FaWhatsapp, href: "#", color: "hover:bg-emerald-600" },
+              ].map((social, index) => (
+                <motion.a
+                  key={index}
+                  href={social.href}
+                  className={`w-14 h-14 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white text-xl transition-all duration-300 ${social.color}`}
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <social.icon />
+                </motion.a>
+              ))}
+            </div>
+
+            <motion.button
+              className="bg-white text-blue-600 px-12 py-6 rounded-full font-bold text-xl hover:bg-gray-100 transition-all duration-300 shadow-2xl flex items-center justify-center gap-3 mx-auto"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <FaPhone />
+              Call Now: +92 328 1969250
+            </motion.button>
           </motion.div>
         </div>
       </section>
-    </>
+    </div>
   )
 }
 

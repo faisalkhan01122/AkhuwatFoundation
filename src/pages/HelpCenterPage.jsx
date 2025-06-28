@@ -265,14 +265,17 @@ const HelpCenterPage = () => {
                 Call Emergency Line
               </motion.a>
 
-              <motion.button
+              <motion.a
+               href="https://wa.me/923281969250"
+  target="_blank"
+  rel="noopener noreferrer"
                 className="bg-white/10 backdrop-blur-sm border-2 border-white text-white px-12 py-6 rounded-full font-bold text-xl hover:bg-white/20 transition-all duration-300 flex items-center justify-center gap-3"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <FaComments />
                 Start Live Chat
-              </motion.button>
+              </motion.a>
             </div>
           </motion.div>
         </div>

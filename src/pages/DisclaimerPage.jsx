@@ -1,72 +1,180 @@
-"use client"
-import HeroImgSection from "../components/HeroImgSection"
+
 import { motion } from "framer-motion"
-import {
-  FaExclamationTriangle,
-  FaInfoCircle,
-  FaShieldAlt,
-  FaBalanceScale,
-  FaHandsHelping,
-  FaGlobeAmericas,
-} from "react-icons/fa"
+import { FaExclamationTriangle, FaShieldAlt, FaInfoCircle, FaPhone, FaEnvelope, FaFileAlt } from "react-icons/fa"
 
 const DisclaimerPage = () => {
   const disclaimerSections = [
     {
-      icon: <FaExclamationTriangle />,
-      title: "General Disclaimer",
-      content:
-        "The information provided on this website is for general informational purposes only. While we strive to keep the information up to date and correct, we make no representations or warranties of any kind about the completeness, accuracy, reliability, or availability of the information.",
-      color: "from-yellow-500 to-orange-600",
+      icon: FaInfoCircle,
+      title: "General Information",
+      content: [
+        "The information provided on this website is for general informational purposes only and should not be considered as financial, legal, or professional advice.",
+        "While we strive to keep the information accurate and up-to-date, we make no representations or warranties of any kind about the completeness, accuracy, reliability, or availability of the information.",
+        "Any reliance you place on such information is strictly at your own risk.",
+      ],
+      color: "text-blue-600",
     },
     {
-      icon: <FaBalanceScale />,
-      title: "Financial Advice Disclaimer",
-      content:
-        "Akhuwat Foundation does not provide financial, investment, or legal advice. Our loan services are designed to provide financial assistance based on Islamic principles. Borrowers should seek independent professional advice before making financial decisions.",
-      color: "from-blue-500 to-indigo-600",
-    },
-    {
-      icon: <FaShieldAlt />,
+      icon: FaShieldAlt,
       title: "Loan Approval Disclaimer",
-      content:
-        "Loan approval is subject to eligibility criteria and community verification. Submitting an application does not guarantee loan approval. Akhuwat Foundation reserves the right to approve or decline applications based on our assessment criteria.",
-      color: "from-green-500 to-emerald-600",
+      content: [
+        "Loan approval is subject to our internal credit assessment and eligibility criteria.",
+        "Meeting the minimum requirements does not guarantee loan approval.",
+        "We reserve the right to reject any loan application without providing specific reasons.",
+        "Loan terms, amounts, and conditions may vary based on individual circumstances and risk assessment.",
+      ],
+      color: "text-emerald-600",
     },
     {
-      icon: <FaInfoCircle />,
-      title: "Information Accuracy",
-      content:
-        "While we make every effort to ensure information accuracy, we cannot guarantee that all information is current or error-free. Users should verify information independently and contact us directly for the most current details about our services.",
-      color: "from-purple-500 to-pink-600",
+      icon: FaExclamationTriangle,
+      title: "Risk Disclosure",
+      content: [
+        "Borrowing money involves financial risk and responsibility.",
+        "Failure to repay loans may result in legal action and impact your credit history.",
+        "Guarantors are equally responsible for loan repayment in case of borrower default.",
+        "Consider your financial situation carefully before applying for any loan.",
+      ],
+      color: "text-orange-600",
     },
     {
-      icon: <FaHandsHelping />,
+      icon: FaFileAlt,
+      title: "Website Content",
+      content: [
+        "The content on this website may contain technical inaccuracies or typographical errors.",
+        "We reserve the right to modify, update, or remove content without prior notice.",
+        "Third-party links are provided for convenience and do not constitute endorsement.",
+        "We are not responsible for the content or practices of external websites.",
+      ],
+      color: "text-purple-600",
+    },
+  ]
+
+  const importantNotices = [
+    {
+      title: "Regulatory Compliance",
+      description:
+        "Akhuwat Network operates under the supervision of relevant regulatory authorities in Pakistan. All operations comply with applicable laws and Islamic Sharia principles.",
+    },
+    {
+      title: "Data Protection",
+      description:
+        "Personal information is collected and processed in accordance with our Privacy Policy and applicable data protection laws. We implement appropriate security measures to protect your data.",
+    },
+    {
       title: "Service Availability",
-      content:
-        "Our services may not be available in all areas or to all individuals. Service availability depends on various factors including geographic location, community presence, and operational capacity. We reserve the right to modify or discontinue services.",
-      color: "from-red-500 to-rose-600",
+      description:
+        "While we strive to maintain continuous service availability, we do not guarantee uninterrupted access to our website or services. Maintenance and technical issues may cause temporary disruptions.",
     },
     {
-      icon: <FaGlobeAmericas />,
-      title: "External Links Disclaimer",
-      content:
-        "Our website may contain links to external websites. We have no control over the content and nature of these sites. The inclusion of any links does not necessarily imply a recommendation or endorse the views expressed within them.",
-      color: "from-teal-500 to-cyan-600",
+      title: "Financial Advice",
+      description:
+        "The information provided does not constitute financial advice. We recommend consulting with qualified financial advisors before making important financial decisions.",
     },
   ]
 
   return (
-    <>
-      <HeroImgSection imageUrl="/disclaimer-examples.webp" text="Disclaimer" />
-
-      <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-yellow-50 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-orange-50">
+      {/* Hero Section */}
+      <section className="relative py-24 overflow-hidden">
         <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-20 left-10 w-40 h-40 bg-yellow-400 rounded-full animate-float"></div>
-          <div className="absolute bottom-32 right-20 w-32 h-32 bg-orange-400 rounded-full animate-float-reverse"></div>
+          <div className="absolute top-20 left-10 w-96 h-96 bg-orange-400 rounded-full animate-float blur-3xl"></div>
+          <div className="absolute bottom-32 right-20 w-80 h-80 bg-red-400 rounded-full animate-float-reverse blur-3xl"></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 relative z-10">
+          <motion.div
+            className="text-center"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <motion.div
+              className="flex items-center justify-center gap-4 mb-8"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+            >
+              <div className="w-16 h-16 bg-gradient-to-r from-orange-600 to-red-600 rounded-full flex items-center justify-center shadow-2xl">
+                <FaExclamationTriangle className="text-white text-2xl" />
+              </div>
+              <div className="text-left">
+                <span className="text-orange-600 font-bold text-xl block">Akhuwat Network</span>
+                <span className="text-gray-500 text-sm">Important Disclaimers</span>
+              </div>
+            </motion.div>
+
+            <motion.h1
+              className="text-5xl md:text-7xl font-black text-gray-900 mb-8"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+            >
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">
+                Disclaimer
+              </span>
+            </motion.h1>
+
+            <motion.p
+              className="text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+            >
+              Please read this disclaimer carefully before using our website or services. This disclaimer outlines the
+              limitations of our liability and your responsibilities as a user.
+            </motion.p>
+
+            <motion.div
+              className="mt-8 text-sm text-gray-500"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+            >
+              Last Updated: January 2024
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Disclaimer Sections */}
+      <section className="py-24 bg-white">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-8">
+            {disclaimerSections.map((section, index) => (
+              <motion.div
+                key={index}
+                className="bg-white rounded-3xl shadow-xl border border-gray-100 p-8 hover:shadow-2xl transition-all duration-500"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.6 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -5 }}
+              >
+                <div className="flex items-center gap-4 mb-6">
+                  <div
+                    className={`w-12 h-12 ${section.color} bg-opacity-10 rounded-full flex items-center justify-center`}
+                  >
+                    <section.icon className={`text-2xl ${section.color}`} />
+                  </div>
+                  <h2 className="text-2xl font-bold text-gray-900">{section.title}</h2>
+                </div>
+
+                <div className="space-y-4">
+                  {section.content.map((paragraph, pIndex) => (
+                    <p key={pIndex} className="text-gray-700 leading-relaxed">
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Important Notices */}
+      <section className="py-24 bg-gradient-to-br from-gray-50 to-orange-50">
+        <div className="max-w-6xl mx-auto px-4">
           <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
@@ -74,164 +182,105 @@ const DisclaimerPage = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <motion.div
-              className="flex items-center justify-center mb-6"
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <div className="w-16 h-16 bg-gradient-to-r from-yellow-600 to-orange-700 rounded-full flex items-center justify-center text-white text-2xl mr-4">
-                <FaExclamationTriangle />
-              </div>
-              <div>
-                <span className="text-yellow-600 font-semibold text-lg block">Important Information</span>
-                <h1 className="text-4xl md:text-5xl font-bold text-gray-900">
-                  <span className="gradient-text">Disclaimer</span>
-                </h1>
-              </div>
-            </motion.div>
-            <motion.p
-              className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              Please read this disclaimer carefully before using our services. This disclaimer governs your use of our
-              website and services provided by Akhuwat Foundation.
-            </motion.p>
+            <h2 className="text-5xl font-black text-gray-900 mb-8">
+              Important{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">Notices</span>
+            </h2>
+            <p className="text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+              Additional important information you should be aware of when using our services
+            </p>
           </motion.div>
 
-          <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <div className="inline-flex items-center bg-yellow-100 text-yellow-800 px-6 py-3 rounded-full font-semibold">
-              <FaInfoCircle className="mr-2" />
-              Last Updated: January 2025
-            </div>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            {disclaimerSections.map((section, index) => (
+          <div className="grid md:grid-cols-2 gap-8">
+            {importantNotices.map((notice, index) => (
               <motion.div
                 key={index}
-                className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover-lift"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.6 }}
+                className="bg-white rounded-3xl shadow-xl border border-orange-100 p-8 hover:shadow-2xl transition-all duration-500"
+                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.2, duration: 0.6 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -10 }}
+                whileHover={{ scale: 1.02 }}
               >
-                <div className={`bg-gradient-to-r ${section.color} p-6 text-white`}>
-                  <div className="flex items-center mb-4">
-                    <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center text-2xl mr-4">
-                      {section.icon}
-                    </div>
-                    <h3 className="text-xl font-bold">{section.title}</h3>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <p className="text-gray-600 leading-relaxed">{section.content}</p>
-                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">{notice.title}</h3>
+                <p className="text-gray-700 leading-relaxed">{notice.description}</p>
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
 
+      {/* Legal Notice */}
+      <section className="py-24 bg-gradient-to-r from-red-600 to-orange-600 text-white">
+        <div className="max-w-4xl mx-auto px-4">
           <motion.div
-            className="bg-gradient-to-r from-yellow-600 to-orange-700 rounded-3xl p-8 md:p-12 text-white relative overflow-hidden mb-16"
-            initial={{ opacity: 0, scale: 0.9 }}
+            className="bg-white/10 backdrop-blur-sm rounded-3xl p-12 border border-white/20"
+            initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <div className="relative z-10">
-              <div className="grid md:grid-cols-2 gap-8 items-center">
-                <div>
-                  <h3 className="text-3xl md:text-4xl font-bold mb-4">Limitation of Liability</h3>
-                  <p className="text-yellow-100 mb-6 leading-relaxed text-lg">
-                    Akhuwat Foundation shall not be liable for any direct, indirect, incidental, special, or
-                    consequential damages resulting from the use or inability to use our services, even if we have been
-                    advised of the possibility of such damages.
-                  </p>
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <motion.a
-                      href="mailto:info@akhuwat.network"
-                      className="bg-white text-yellow-700 px-6 py-3 rounded-full font-bold hover:bg-yellow-50 transition-all duration-300 shadow-lg text-center"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      Contact Us
-                    </motion.a>
-                    <motion.a
-                      href="tel:+923281969250"
-                      className="bg-white/10 border-2 border-white text-white px-6 py-3 rounded-full font-bold hover:bg-white/20 transition-all duration-300 text-center"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      Call: +92 328 1969250
-                    </motion.a>
-                  </div>
-                </div>
-                <div className="relative">
-                  <motion.div
-                    className="bg-white/10 rounded-2xl p-6 backdrop-blur-sm"
-                    initial={{ opacity: 0, x: 30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.5, duration: 0.6 }}
-                    viewport={{ once: true }}
-                  >
-                    <h4 className="text-xl font-bold mb-4">Key Points to Remember</h4>
-                    <ul className="space-y-2 text-yellow-100">
-                      <li>• Services are provided "as is"</li>
-                      <li>• No guarantee of loan approval</li>
-                      <li>• Information subject to change</li>
-                      <li>• Independent verification recommended</li>
-                    </ul>
-                  </motion.div>
-                </div>
+            <div className="text-center">
+              <FaExclamationTriangle className="text-5xl text-yellow-300 mx-auto mb-6" />
+              <h2 className="text-3xl font-bold mb-6">Legal Notice</h2>
+              <div className="space-y-4 text-lg leading-relaxed">
+                <p>
+                  This disclaimer is governed by the laws of Pakistan. By using our website and services, you agree to
+                  the terms outlined in this disclaimer.
+                </p>
+                <p>
+                  If any part of this disclaimer is found to be unenforceable, the remaining provisions will continue to
+                  be valid and enforceable.
+                </p>
+                <p>
+                  We reserve the right to modify this disclaimer at any time. Changes will be effective immediately upon
+                  posting on our website.
+                </p>
               </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            className="grid md:grid-cols-3 gap-8"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
-                <FaBalanceScale />
-              </div>
-              <h4 className="text-xl font-bold text-gray-900 mb-3">Legal Compliance</h4>
-              <p className="text-gray-600">All services comply with Pakistani law and Islamic finance principles.</p>
-            </div>
-
-            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
-                <FaShieldAlt />
-              </div>
-              <h4 className="text-xl font-bold text-gray-900 mb-3">Data Protection</h4>
-              <p className="text-gray-600">We protect your personal information according to our privacy policy.</p>
-            </div>
-
-            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
-                <FaHandsHelping />
-              </div>
-              <h4 className="text-xl font-bold text-gray-900 mb-3">Community Focus</h4>
-              <p className="text-gray-600">Our services are designed to benefit communities and individuals in need.</p>
             </div>
           </motion.div>
         </div>
       </section>
-    </>
+
+      {/* Contact Section */}
+      <section className="py-24 bg-white">
+        <div className="max-w-4xl mx-auto px-4">
+          <motion.div
+            className="text-center"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-4xl font-bold text-gray-900 mb-8">Questions or Concerns?</h2>
+            <p className="text-xl text-gray-600 mb-12 leading-relaxed">
+              If you have any questions about this disclaimer or need clarification on any point, please contact us. We
+              are here to help and provide the information you need.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <motion.button
+                className="bg-gradient-to-r from-orange-600 to-red-600 text-white px-10 py-4 rounded-full font-bold text-lg hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-3"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <FaPhone />
+                Call: +92 328 1969250
+              </motion.button>
+
+              <motion.button
+                className="bg-white border-2 border-orange-600 text-orange-600 px-10 py-4 rounded-full font-bold text-lg hover:bg-orange-50 transition-all duration-300 flex items-center justify-center gap-3"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <FaEnvelope />
+                Email: legal@akhuwat.org.pk
+              </motion.button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+    </div>
   )
 }
 

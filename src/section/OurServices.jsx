@@ -24,7 +24,7 @@ const services = [
     color: "from-blue-600 to-indigo-700",
     features: ["Up to ₨30 Lacs", "Zero Interest", "Quick 5-Day Approval", "Business Mentoring"],
     popular: true,
-    link: "/business-loans",
+    link: "/loans/business",
   },
   {
     title: "Microfinance Loans",
@@ -33,7 +33,7 @@ const services = [
     icon: <FaUsers />,
     color: "from-emerald-600 to-teal-700",
     features: ["₨50K to ₨5 Lacs", "Women-Focused", "Group Lending", "Skill Development"],
-    link: "/microfinance-loans",
+    link: "/loans/microfinance",
   },
   {
     title: "Personal Loans",
@@ -42,7 +42,7 @@ const services = [
     icon: <FaUser />,
     color: "from-purple-600 to-pink-700",
     features: ["Up to ₨15 Lacs", "Emergency Support", "Fast Disbursement", "Flexible Terms"],
-    link: "/personal-loans",
+    link: "/loans/personal",
   },
   {
     title: "Healthcare Loans",
@@ -51,7 +51,7 @@ const services = [
     icon: <FaMedkit />,
     color: "from-red-600 to-rose-700",
     features: ["Medical Emergencies", "Surgery Support", "Treatment Plans", "Family Coverage"],
-    link: "/healthcare-loans",
+    link: "/loans/healthcares",
   },
   {
     title: "Education Loans",
@@ -60,7 +60,7 @@ const services = [
     icon: <FaGraduationCap />,
     color: "from-indigo-600 to-purple-700",
     features: ["Full Fee Coverage", "Books & Materials", "Living Expenses", "Merit-based Support"],
-    link: "/education-loans",
+    link: "/loans/education",
   },
   {
     title: "Housing Loans",
@@ -69,21 +69,21 @@ const services = [
     icon: <FaHome />,
     color: "from-green-600 to-emerald-700",
     features: ["Up to ₨50 Lacs", "Long-term Repayment", "Construction Support", "Legal Assistance"],
-    link: "/housing-loans",
+    link: "/loans/housing",
   },
   {
     title: "Emergency Loans",
     desc: "Rapid financial assistance when you need it most. Our emergency loan program provides immediate relief during unexpected situations and natural disasters.",
-    image: "/businessloanbanner.jpg",
+    image: "/emergency.jpg",
     icon: <FaExclamationTriangle />,
     color: "from-orange-600 to-red-700",
     features: ["Instant Approval", "24/7 Processing", "Crisis Support", "Disaster Relief"],
-    link: "/emergency-loans",
+    link: "/loans/emergency",
   },
 ]
 
 const OurServices = () => {
-  const [hoveredCard, setHoveredCard] = useState(null)
+  // const [hoveredCard, setHoveredCard] = useState(null)
 
   return (
     <section className="py-24 bg-gradient-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden">
@@ -169,63 +169,72 @@ const OurServices = () => {
         </motion.div>
 
         {/* Enhanced Services Grid */}
-      <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              className="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl border border-gray-200 transition-all duration-500"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.6 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -10 }}
-            >
-              <div className="relative h-60 overflow-hidden">
-                <img
-                  src={service.image || "/placeholder.svg"}
-                  alt={service.title}
-                  className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
-                <div className="absolute top-4 left-4">
-                  {service.popular && (
-                    <span className="bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs font-semibold px-4 py-1 rounded-full shadow">
-                      ⭐ Most Popular
-                    </span>
-                  )}
-                </div>
-              </div>
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
+      {services.map((service, index) => (
+        <motion.div
+          key={index}
+          className="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl border border-gray-200 transition-all duration-500"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: index * 0.1, duration: 0.6 }}
+          viewport={{ once: true }}
+          whileHover={{ y: -10 }}
+        >
+          {/* Image Section */}
+          <div className="relative h-60 overflow-hidden">
+            <img
+              src={service.image || "/placeholder.svg"}
+              alt={service.title}
+              className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
+            <div className="absolute top-4 left-4">
+              {service.popular && (
+                <span className="bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs font-semibold px-4 py-1 rounded-full shadow">
+                  ⭐ Most Popular
+                </span>
+              )}
+            </div>
+          </div>
 
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  {service.title}
-                </h3>
-                <p className="text-gray-600 mb-4 text-sm leading-relaxed">
-                  {service.desc}
-                </p>
+          {/* Content Section */}
+          <div className="p-6 relative z-10">
+            <h3 className="text-xl font-bold text-gray-900 mb-2">
+              {service.title}
+            </h3>
+            <p className="text-gray-600 mb-4 text-sm leading-relaxed">
+              {service.desc}
+            </p>
 
-                <ul className="space-y-2 mb-6">
-                  {service.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center text-gray-700 text-sm">
-                      <FaCheckCircle className="text-emerald-500 mr-2" /> {feature}
-                    </li>
-                  ))}
-                </ul>
-
-                <motion.a
-                  href={service.link}
-                  className={`inline-flex items-center justify-center w-full py-3 px-6 text-white font-semibold rounded-xl shadow-md bg-gradient-to-r ${service.color} hover:opacity-90 transition duration-300`}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+            <ul className="space-y-2 mb-6">
+              {service.features.map((feature, idx) => (
+                <li
+                  key={idx}
+                  className="flex items-center text-gray-700 text-sm"
                 >
-                  Learn More <FaArrowRight className="ml-2" />
-                </motion.a>
-              </div>
+                  <FaCheckCircle className="text-emerald-500 mr-2" /> {feature}
+                </li>
+              ))}
+            </ul>
 
-              <div className={`absolute inset-0 opacity-0 group-hover:opacity-40 transition-opacity duration-500 bg-gradient-to-r ${service.color} blur-xl`} />
-            </motion.div>
-          ))}
-        </div>
+            {/* Call to Action Button */}
+            <motion.a
+              href={service.link}
+              className={`inline-flex items-center justify-center w-full py-3 px-6 text-white font-semibold rounded-xl shadow-md bg-gradient-to-r ${service.color} hover:opacity-90 transition duration-300 cursor-pointer z-10 relative`}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              Learn More <FaArrowRight className="ml-2" />
+            </motion.a>
+          </div>
+
+          {/* Decorative Hover Overlay (non-blocking) */}
+          <div
+            className={`absolute inset-0 opacity-0 group-hover:opacity-40 transition-opacity duration-500 bg-gradient-to-r ${service.color} blur-xl pointer-events-none`}
+          />
+        </motion.div>
+      ))}
+    </div>
 
         {/* Enhanced CTA Section */}
         <motion.div
@@ -251,7 +260,7 @@ const OurServices = () => {
 
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
                 <motion.a
-                  href="/loan-services"
+                  href="/contact-us"
                   className="bg-white text-emerald-600 px-10 py-5 rounded-full font-bold text-xl hover:bg-gray-100 transition-all duration-300 shadow-2xl flex items-center justify-center gap-3"
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}

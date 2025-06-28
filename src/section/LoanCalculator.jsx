@@ -158,7 +158,9 @@ const LoanCalculator = () => {
 
               {/* Apply Button */}
               <motion.a
-                href="/loan-services"
+                 href="https://wa.me/923281969250"
+  target="_blank"
+  rel="noopener noreferrer"
                 className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 text-white py-4 px-6 rounded-2xl font-bold text-lg hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-3"
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}

@@ -1,5 +1,14 @@
-
-import { motion } from "framer-motion"
+// Redesigned Services Grid + Team Grid + Partners Section with Enhanced Card Design
+import { motion } from "framer-motion";
+import {
+  FaHandshake,
+  FaGlobe,
+  FaUsers,
+  FaAward,
+  FaChevronLeft,
+  FaChevronRight,
+} from "react-icons/fa";
+import { useState, useEffect } from "react";
 
 const partners = [
   {
@@ -44,230 +53,162 @@ const partners = [
     logo: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=200&h=100&fit=crop",
     description: "Building homes, communities and hope",
   },
-]
+];
 
 const CollaboratingPartnersSection = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const partnersPerSlide = 4;
+  const totalSlides = Math.ceil(partners.length / partnersPerSlide);
+
+  useEffect(() => {
+    if (isAutoPlaying) {
+      const interval = setInterval(() => {
+        setCurrentSlide((prev) => (prev + 1) % totalSlides);
+      }, 4000);
+      return () => clearInterval(interval);
+    }
+  }, [isAutoPlaying, totalSlides]);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % totalSlides);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
+  };
+
   return (
-    <section className="py-20 bg-white relative overflow-hidden">
-      {/* Background Elements */}
+    <section className="py-24 bg-gradient-to-br from-white via-gray-50 to-blue-50 relative overflow-hidden">
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-blue-400 rounded-full animate-float"></div>
-        <div className="absolute bottom-32 right-20 w-24 h-24 bg-green-400 rounded-full animate-float-reverse"></div>
+        <div className="absolute top-20 left-10 w-96 h-96 bg-blue-400 rounded-full animate-float blur-3xl"></div>
+        <div className="absolute bottom-32 right-20 w-80 h-80 bg-emerald-400 rounded-full animate-float-reverse blur-3xl"></div>
+        <div className="absolute top-1/2 right-1/4 w-64 h-64 bg-purple-400 rounded-full animate-pulse blur-2xl"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 relative z-10">
-        {/* Header */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-20"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <motion.span
-            className="text-green-600 font-semibold text-lg mb-2 block"
+          <motion.div
+            className="flex items-center justify-center gap-4 mb-8"
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.6 }}
             viewport={{ once: true }}
           >
-            Akhuwat USA
-          </motion.span>
+            <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center shadow-2xl">
+              <FaHandshake className="text-white text-2xl" />
+            </div>
+            <div className="text-left">
+              <span className="text-blue-600 font-bold text-xl block">Akhuwat USA</span>
+              <span className="text-gray-500 text-sm">Global Partnerships</span>
+            </div>
+          </motion.div>
+
           <motion.h2
-            className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
+            className="text-5xl md:text-7xl font-black text-gray-900 mb-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
             viewport={{ once: true }}
           >
-            Collaborating <span className="gradient-text">Partners</span>
+            Collaborating <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Partners</span>
           </motion.h2>
+
           <motion.p
-            className="text-xl text-gray-600 max-w-3xl mx-auto"
+            className="text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
             viewport={{ once: true }}
           >
-            Working together with leading organizations to create lasting impact in communities worldwide
+            Working together with leading organizations worldwide to create lasting impact in communities and transform lives
           </motion.p>
         </motion.div>
 
-     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-20">
-  {partners.map((partner, index) => (
-    <motion.div
-      key={partner.id}
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.1, duration: 0.6 }}
-      viewport={{ once: true }}
-      whileHover={{ scale: 1.05, rotateX: 2, rotateY: 2 }}
-      className="group relative bg-white/80 backdrop-blur-xl border border-gray-200 rounded-2xl shadow-lg hover:shadow-2xl hover:shadow-green-300 transition-all duration-500 text-center p-6 overflow-hidden"
-    >
-      {/* Glow Background */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-green-100 via-white to-blue-100 opacity-10 blur-2xl rounded-2xl pointer-events-none" />
-
-      {/* Floating Glow Dot */}
-      <div className="absolute -top-4 -left-4 w-16 h-16 bg-green-400 rounded-full opacity-30 blur-2xl animate-pulse pointer-events-none"></div>
-
-      {/* Partner Logo */}
-      <motion.div
-        className="flex justify-center items-center h-20 mb-4"
-        animate={{ y: [0, -5, 0] }}
-        transition={{ repeat: Infinity, duration: 4 }}
-      >
-        <img
-          src={partner.logo}
-          alt={partner.name}
-          className="h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-        />
-      </motion.div>
-
-      {/* Title */}
-      <motion.h3
-        className="text-lg font-bold text-gray-800 mb-2 transition-colors duration-300 group-hover:text-green-600"
-        whileHover={{ scale: 1.05 }}
-      >
-        {partner.name}
-      </motion.h3>
-
-      {/* Description */}
-      <p className="text-sm text-gray-600 mb-3 leading-relaxed min-h-[60px]">
-        {partner.description}
-      </p>
-
-      {/* Full Name (on hover reveal) */}
-      <motion.div
-        className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-        initial={{ height: 0 }}
-        animate={{ height: "auto" }}
-      >
-        <p className="text-xs text-green-700 font-semibold italic">
-          {partner.fullName}
-        </p>
-      </motion.div>
-    </motion.div>
-  ))}
-</div>
-
-
-        {/* Partnership Benefits */}
-        <motion.div
-          className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-3xl p-8 md:p-12"
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          viewport={{ once: true }}
+        <div
+          className="relative mb-20"
+          onMouseEnter={() => setIsAutoPlaying(false)}
+          onMouseLeave={() => setIsAutoPlaying(true)}
         >
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* Content */}
-            <div>
-              <motion.h3
-                className="text-3xl md:text-4xl font-bold text-gray-900 mb-6"
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.3, duration: 0.6 }}
-                viewport={{ once: true }}
-              >
-                Why Partner <span className="gradient-text">With Us?</span>
-              </motion.h3>
-
-              <div className="space-y-4">
-                {[
-                  {
-                    icon: "🤝",
-                    title: "Collaborative Impact",
-                    desc: "Join forces to create meaningful change in communities",
-                  },
-                  {
-                    icon: "🌍",
-                    title: "Global Reach",
-                    desc: "Extend your impact across multiple countries and regions",
-                  },
-                  {
-                    icon: "💡",
-                    title: "Innovative Solutions",
-                    desc: "Develop cutting-edge approaches to poverty alleviation",
-                  },
-                  {
-                    icon: "📈",
-                    title: "Measurable Results",
-                    desc: "Track and measure the real impact of our joint efforts",
-                  },
-                ].map((benefit, index) => (
-                  <motion.div
-                    key={index}
-                    className="flex items-start gap-4 p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300"
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.4 + index * 0.1, duration: 0.6 }}
-                    viewport={{ once: true }}
-                    whileHover={{ x: 5 }}
-                  >
-                    <span className="text-2xl">{benefit.icon}</span>
-                    <div>
-                      <h4 className="font-semibold text-gray-900 mb-1">{benefit.title}</h4>
-                      <p className="text-gray-600 text-sm">{benefit.desc}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-
-            {/* Image */}
+          <div className="overflow-hidden rounded-3xl">
             <motion.div
-              className="relative"
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-              viewport={{ once: true }}
+              className="flex transition-transform duration-500 ease-in-out"
+              style={{ transform: `translateX(-${currentSlide * 100}%)` }}
             >
-              <div className="relative overflow-hidden rounded-2xl shadow-2xl">
-                <img
-                  src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=500&h=400&fit=crop"
-                  alt="Partnership"
-                  className="w-full h-80 object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-
-                {/* Floating Stats */}
-                <motion.div
-                  className="absolute bottom-6 left-6 bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-lg"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.7, duration: 0.6 }}
-                  viewport={{ once: true }}
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-green-600">50+</div>
-                    <div className="text-sm text-gray-600">Active Partners</div>
+              {Array.from({ length: totalSlides }).map((_, slideIndex) => (
+                <div key={slideIndex} className="w-full flex-shrink-0">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-4">
+                    {partners
+                      .slice(slideIndex * partnersPerSlide, (slideIndex + 1) * partnersPerSlide)
+                      .map((partner) => (
+                        <motion.div
+                          key={partner.id}
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.5 }}
+                          className="relative group bg-white border border-gray-200 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 p-6 text-center overflow-hidden"
+                        >
+                          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-50 to-emerald-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></div>
+                          <div className="relative z-10">
+                            <div className="flex justify-center items-center h-24 mb-4">
+                              <img
+                                src={partner.logo}
+                                alt={partner.name}
+                                className="max-h-full object-contain grayscale group-hover:grayscale-0 transition duration-300"
+                              />
+                            </div>
+                            <h3 className="text-xl font-bold text-gray-800 mb-1 group-hover:text-blue-600 transition-colors duration-300">
+                              {partner.name}
+                            </h3>
+                            <p className="text-sm text-gray-600 mb-2 min-h-[48px]">
+                              {partner.description}
+                            </p>
+                            <p className="text-xs text-blue-700 italic font-medium">
+                              {partner.fullName}
+                            </p>
+                          </div>
+                        </motion.div>
+                      ))}
                   </div>
-                </motion.div>
-              </div>
+                </div>
+              ))}
             </motion.div>
           </div>
-        </motion.div>
 
-        {/* CTA */}
-        <motion.div
-          className="text-center mt-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          viewport={{ once: true }}
-        >
-          <motion.button
-            className="bg-gradient-to-r from-green-600 to-emerald-700 hover:from-green-700 hover:to-emerald-800 text-white px-10 py-4 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300 font-semibold animate-pulse-glow"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+          <button
+            onClick={prevSlide}
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white border border-gray-200 rounded-full shadow hover:shadow-lg flex items-center justify-center text-gray-600 hover:text-blue-600"
           >
-            Become a Partner
-          </motion.button>
-        </motion.div>
+            <FaChevronLeft />
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white border border-gray-200 rounded-full shadow hover:shadow-lg flex items-center justify-center text-gray-600 hover:text-blue-600"
+          >
+            <FaChevronRight />
+          </button>
+
+          <div className="flex justify-center mt-8 gap-2">
+            {Array.from({ length: totalSlides }).map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === currentSlide ? "bg-blue-600 w-8" : "bg-gray-300 hover:bg-gray-400"
+                }`}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default CollaboratingPartnersSection
+export default CollaboratingPartnersSection;

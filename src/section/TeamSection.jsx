@@ -87,7 +87,7 @@ const teamMembers = [
     id: 5,
     name: "Ms. Fatima Sheikh",
     role: "Director Women Empowerment",
-    image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=300&h=300&fit=crop&crop=face",
+    image: "https://indianliberals.in/wp-content/uploads/2022/01/fs.png",
     bio: "Leading women empowerment initiatives and microfinance programs specifically designed for female entrepreneurs across Pakistan.",
     achievements: ["Women empowerment", "Female entrepreneurship", "Microfinance specialist"],
     location: "Multan, Pakistan",
@@ -104,7 +104,7 @@ const teamMembers = [
     id: 6,
     name: "Mr. Hassan Ali",
     role: "Director Technology",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face",
+    image: "https://media.licdn.com/dms/image/v2/D4D03AQFy_RQNjG4Z_A/profile-displayphoto-shrink_200_200/B4DZXmxvEuHkAg-/0/1743333552897?e=2147483647&v=beta&t=5L_gaOMDuSIWp0t4ALcW4kAJPy3AfWz9CdfVHOBZGP4",
     bio: "Driving digital transformation and technology innovation to enhance service delivery and operational efficiency across all Akhuwat programs.",
     achievements: ["Digital transformation", "Technology innovation", "System optimization"],
     location: "Lahore, Pakistan",
@@ -197,7 +197,7 @@ const TeamSection = () => {
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-full object-center transform transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
 
@@ -317,23 +317,25 @@ const TeamSection = () => {
                   transition={{ delay: 0.6, duration: 0.6 }}
                   viewport={{ once: true }}
                 >
-                  <motion.button
+                  <motion.a
+                  href="/contact-us"
                     className="bg-white text-emerald-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-emerald-50 transition-all duration-300 shadow-lg flex items-center justify-center gap-3"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
                     <FaHeart />
                     Donate Now
-                  </motion.button>
+                  </motion.a>
 
-                  <motion.button
+                  <motion.a
+                  href="/about"
                     className="bg-white/10 backdrop-blur-sm border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/20 transition-all duration-300 flex items-center justify-center gap-3"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
                     <FaUsers />
                     Join Our Team
-                  </motion.button>
+                  </motion.a>
                 </motion.div>
               </div>
 
